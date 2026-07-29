@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chay Chauhan — AI Engineer</title>
+<meta name="description" content="AI Engineer building agentic AI systems, RAG pipelines and LLM-powered automation. Plain-English portfolio with links to code.">
+<style>
+  :root{
+    --ink:#141b2e;        /* deep ink blue background */
+    --ink-2:#1c2540;      /* raised panel */
+    --paper:#f5f3ee;      /* warm off-white text */
+    --muted:#9aa4bd;      /* muted slate */
+    --line:#2b3557;       /* hairline */
+    --amber:#f2a63b;      /* signal amber accent */
+    --amber-soft:#f2a63b22;
+    --green:#7bd88f;      /* verified/metric green */
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* ---- top bar ---- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(20,27,46,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;letter-spacing:-.01em;font-size:1.02rem}
+  .brand span{color:var(--amber)}
+  .toplinks{display:flex;gap:22px;align-items:center}
+  .toplinks a{font-size:.92rem;color:var(--muted);text-decoration:none;transition:color .15s}
+  .toplinks a:hover{color:var(--paper)}
+  .lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang button{
+    background:none;border:none;color:var(--muted);font:inherit;font-size:.8rem;
+    padding:3px 10px;border-radius:999px;cursor:pointer;transition:.15s;
+  }
+  .lang button.active{background:var(--amber);color:var(--ink);font-weight:600}
+
+  /* ---- hero ---- */
+  .hero{padding:88px 0 40px}
+  .eyebrow{
+    display:inline-block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:22px;font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5.5vw,3.7rem);line-height:1.05;font-weight:800;
+    letter-spacing:-.025em;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .lede{font-size:clamp(1.05rem,2.2vw,1.28rem);color:#d9dce6;max-width:660px;margin-bottom:14px}
+  .plain{
+    max-width:660px;color:var(--muted);font-size:1rem;
+    border-left:2px solid var(--amber);padding-left:16px;margin:22px 0 30px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    padding:11px 20px;border-radius:8px;font-weight:600;font-size:.95rem;transition:.15s;
+  }
+  .btn-primary{background:var(--amber);color:var(--ink)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* ---- section ---- */
+  section{padding:46px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+  .sec-head .count{color:var(--muted);font-size:.9rem}
+  .sec-sub{color:var(--muted);max-width:640px;margin-bottom:30px}
+
+  /* ---- project cards ---- */
+  .grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  .card{
+    background:var(--ink-2);border:1px solid var(--line);border-radius:14px;
+    padding:24px;display:flex;flex-direction:column;transition:.18s;
+  }
+  .card:hover{border-color:var(--amber);transform:translateY(-3px)}
+  .card .tag{
+    font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);
+    font-weight:600;margin-bottom:10px;
+  }
+  .card h3{font-size:1.16rem;font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
+  .field{margin-bottom:12px}
+  .field .lab{
+    font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    display:block;margin-bottom:3px;font-weight:600;
+  }
+  .field p{font-size:.95rem;color:#d9dce6}
+  .metric{
+    display:inline-flex;align-items:center;gap:7px;background:var(--amber-soft);
+    color:var(--amber);font-size:.82rem;font-weight:600;padding:5px 11px;border-radius:6px;margin-top:4px;
+  }
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 16px}
+  .chip{
+    font-size:.76rem;color:var(--muted);border:1px solid var(--line);
+    padding:3px 9px;border-radius:6px;
+  }
+  .card .foot{margin-top:auto;display:flex;gap:14px;align-items:center}
+  .card .foot a{
+    font-size:.88rem;color:var(--amber);text-decoration:none;font-weight:600;
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .card .foot a:hover{text-decoration:underline}
+
+  /* ---- about / skills ---- */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:30px}
+  @media(min-width:760px){.about-grid{grid-template-columns:1.3fr 1fr}}
+  .about p{color:#d9dce6;margin-bottom:14px}
+  .skills h4{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0 0 10px;font-weight:600}
+  .skills ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+  .skills li{font-size:.82rem;color:var(--muted);border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+
+  /* ---- contact ---- */
+  .contact{text-align:center;padding:60px 0 40px}
+  .contact h2{font-size:1.8rem;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+  .contact p{color:var(--muted);margin-bottom:26px}
+  .contact .cta-row{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  [data-lang]{display:none}
+  [data-lang].show{display:inline}
+  .block[data-lang]{display:none}
+  .block[data-lang].show{display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Chay Chauhan<span>.</span></div>
+    <nav class="toplinks">
+      <a href="#projects" data-lang="en" class="show">Projects</a>
+      <a href="#about" data-lang="en" class="show">About</a>
+      <a href="#contact" data-lang="en" class="show">Contact</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button class="active" data-set="en">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">AI Engineer · Agentic Systems &amp; RAG</span>
+    <h1>I build <em>AI systems</em> that do real work — and I measure whether they actually work.</h1>
+    <p class="lede">Agentic AI, retrieval-augmented generation (RAG), and LLM-powered automation, built in Python. Four years of data experience inside a regulated insurer, now applied to building AI tools for real business problems.</p>
+    <p class="plain">In plain terms: I build software that uses AI to answer questions, automate repetitive work, and make decisions — the kind of tools a business uses to save time and cut cost. Every project below links to the working code.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/chait6982" target="_blank" rel="noopener">View my GitHub →</a>
+      <a class="btn btn-ghost" href="#projects">See the projects</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Selected projects</h2>
+      <span class="count">6 builds · all with working code</span>
+    </div>
+    <p class="sec-sub">Each card explains what the project is, what it's used for, and links to the code. No technical background needed to follow the "what it's for" line.</p>
+
+    <div class="grid">
+
+      <!-- 1 RAG -->
+      <div class="card">
+        <span class="tag">RAG · Retrieval &amp; Search</span>
+        <h3>Smart Document Q&amp;A System</h3>
+        <div class="field"><span class="lab">What it is</span><p>An AI system that answers questions about a document by finding the right passages first, then writing a grounded answer — and it decides on its own whether to search the document, search the web, or answer directly.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Letting a person ask plain questions of a large document (a report, contract, or manual) and get accurate, sourced answers instead of reading the whole thing.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>I didn't just build it — I measured it. Using an industry evaluation tool (RAGAS), the answers scored 97% on faithfulness (staying true to the source).</p><span class="metric">✓ 0.97 faithfulness · 0.92 precision</span></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Chroma vector database</span><span class="chip">Embeddings</span><span class="chip">RAGAS evaluation</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/agentic-rag-chroma" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+      <!-- 2 MCP server -->
+      <div class="card">
+        <span class="tag">Agent Tools · Integration</span>
+        <h3>Market Research Agent (with custom tool server)</h3>
+        <div class="field"><span class="lab">What it is</span><p>A chat-based research assistant that can call live tools — web search, competitor analysis — through a custom "tool server" I built, then package the results back to the user in conversation.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Turning a slow manual research task into something a non-technical person can do by just asking in a chat window, with the AI fetching and structuring the information.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>The tool server is packaged with Docker, so it runs the same on any machine — a step toward production-ready, not just a demo.</p><span class="metric">✓ Containerised &amp; runnable</span></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">MCP server</span><span class="chip">n8n</span><span class="chip">Docker</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/Research-Agent" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+      <!-- 3 GTM capstone -->
+      <div class="card">
+        <span class="tag">Multi-Agent · Orchestration</span>
+        <h3>Go-to-Market Strategy System</h3>
+        <div class="field"><span class="lab">What it is</span><p>A team of four AI agents — a planner, researcher, analyst and strategist — that work in sequence to produce a market-entry strategy, built two different ways so the two approaches can be compared directly.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Automating a piece of business analysis that would normally take a team of people, while keeping every claim traceable to its source.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>Every fact the agents use is tagged with where it came from, and the whole run is scored on quality — so the output is auditable, not a black box.</p></div>
+        <div class="stack"><span class="chip">CrewAI</span><span class="chip">n8n</span><span class="chip">Shared tool server</span><span class="chip">Evaluation</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/gtm-strategy-system-capstone" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+      <!-- 4 AutoGen triage -->
+      <div class="card">
+        <span class="tag">Multi-Agent · Automation</span>
+        <h3>Support Ticket Triage Team</h3>
+        <div class="field"><span class="lab">What it is</span><p>A group of AI agents that discuss incoming support tickets among themselves and decide, together, which ones to prioritise.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Helping a support team handle a flood of requests by having AI sort and rank them first, so humans focus on what matters most.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>The agents coordinate with each other (agent-to-agent), rather than a single AI making every call alone.</p></div>
+        <div class="stack"><span class="chip">AutoGen</span><span class="chip">Azure OpenAI</span><span class="chip">Python</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/autogen-multi-agent-triage" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+      <!-- 5 Accelerator planner -->
+      <div class="card">
+        <span class="tag">Multi-Agent · Memory</span>
+        <h3>Startup Accelerator Planner</h3>
+        <div class="field"><span class="lab">What it is</span><p>A set of AI agents (research, funding, pitch coach, critic) that plan a startup's next steps, share a common memory, and improve their own output through a review-and-refine loop.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Producing a first-draft plan for an early-stage business — market research, funding options, and a pitch outline — that a founder can refine.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>It runs with no paid AI service by default (built-in offline mode), so it can be demonstrated for free, and a "critic" agent checks the work before it's finalised.</p></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Vector memory</span><span class="chip">Critic–refine loop</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/accelerator-planner-multi-agent" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+      <!-- 6 CrewAI serial/parallel -->
+      <div class="card">
+        <span class="tag">Workflow · Foundations</span>
+        <h3>Serial &amp; Parallel Agent Workflows</h3>
+        <div class="field"><span class="lab">What it is</span><p>Two AI agents (a researcher and a writer) set up to run two ways — one after another, and at the same time — to show how task ordering affects speed and results.</p></div>
+        <div class="field"><span class="lab">What it's used for</span><p>Demonstrating a core building block of AI automation: knowing when tasks must run in order versus when they can run together to save time.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>A clear, hands-on comparison of the two execution styles — the kind of decision that matters in real production systems.</p></div>
+        <div class="stack"><span class="chip">CrewAI</span><span class="chip">Async execution</span><span class="chip">Python</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/crewai-serial-parallel-pipeline" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about">
+        <p>I'm an AI engineer who builds and evaluates LLM-powered systems — agents, RAG pipelines, and automation — in Python. What makes my work different is where I've come from: four years inside a regulated (FCA) insurer, working hands-on with claims and risk data in SQL and Python. That means I build AI for real business problems — cost, accuracy, and auditability — not just demos.</p>
+        <p>I care about whether things actually work. Across my projects you'll see evaluation, measurement, and observability built in, because "it produced an answer" and "it produced the right answer" are different things.</p>
+        <p>I'm commencing an MSc in Artificial Intelligence at the University of Hull in 2026, and I use AI tools (Claude, Cursor, Copilot) daily in my own work. I'm UK-based and open to remote and hybrid roles.</p>
+      </div>
+      <div class="skills">
+        <h4>Agentic AI &amp; LLMs</h4>
+        <ul><li>RAG</li><li>LangGraph</li><li>LangChain</li><li>CrewAI</li><li>AutoGen</li><li>MCP</li><li>Prompt engineering</li><li>Evaluation (RAGAS)</li></ul>
+        <h4>Data &amp; Retrieval</h4>
+        <ul><li>Vector databases (Chroma, FAISS)</li><li>Embeddings</li><li>Semantic search</li></ul>
+        <h4>Engineering</h4>
+        <ul><li>Python</li><li>SQL</li><li>APIs</li><li>Docker</li><li>Git</li><li>n8n</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>Open to AI Engineer, Applied AI, and Agentic AI roles — remote or hybrid.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:chait6982@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://github.com/chait6982" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/chaychauhan/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Chay Chauhan · Built to make the work easy to understand — the code speaks for itself.</div>
+</footer>
+
+<script>
+  // Language toggle scaffold — English live now; add data-lang="xx" blocks and a button to extend.
+  document.querySelectorAll('.lang button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.lang button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      const set=b.dataset.set;
+      document.querySelectorAll('[data-lang]').forEach(el=>{
+        el.classList.toggle('show', el.dataset.lang===set);
+      });
+    });
+  });
+</script>
+</body>
+</html>
