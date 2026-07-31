@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chay Chauhan — AI Engineer</title>
+<meta name="description" content="AI Engineer building agentic AI systems, RAG pipelines and LLM-powered automation. Plain-English portfolio with links to code.">
+<style>
+  :root{
+    --ink:#141b2e;
+    --ink-2:#1c2540;
+    --paper:#f5f3ee;
+    --muted:#9aa4bd;
+    --line:#2b3557;
+    --amber:#f2a63b;
+    --amber-soft:#f2a63b22;
+    --green:#7bd88f;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans JP','Noto Sans SC','Noto Sans TC','Noto Sans Thai',Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* ---- top bar ---- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(20,27,46,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;min-height:60px;gap:14px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+  .brand{font-weight:700;letter-spacing:-.01em;font-size:1.02rem}
+  .brand span{color:var(--amber)}
+  .toplinks{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .toplinks a{font-size:.92rem;color:var(--muted);text-decoration:none;transition:color .15s}
+  .toplinks a:hover{color:var(--paper)}
+  .lang{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;flex-wrap:wrap}
+  .lang button{
+    background:none;border:none;color:var(--muted);font:inherit;font-size:.78rem;
+    padding:3px 9px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;
+  }
+  .lang button:hover{color:var(--paper)}
+  .lang button.active{background:var(--amber);color:var(--ink);font-weight:600}
+
+  /* ---- hero ---- */
+  .hero{padding:88px 0 40px}
+  .eyebrow{
+    display:inline-block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:22px;font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5.5vw,3.7rem);line-height:1.05;font-weight:800;
+    letter-spacing:-.025em;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .lede{font-size:clamp(1.05rem,2.2vw,1.28rem);color:#d9dce6;max-width:660px;margin-bottom:14px}
+  .plain{
+    max-width:660px;color:var(--muted);font-size:1rem;
+    border-left:2px solid var(--amber);padding-left:16px;margin:22px 0 30px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    padding:11px 20px;border-radius:8px;font-weight:600;font-size:.95rem;transition:.15s;
+    border:none;font-family:inherit;cursor:pointer;
+  }
+  .btn-primary{background:var(--amber);color:var(--ink)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--paper);background:none}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* ---- section ---- */
+  section{padding:46px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .sec-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+  .sec-head .count{color:var(--muted);font-size:.9rem}
+  .sec-sub{color:var(--muted);max-width:640px;margin-bottom:30px}
+
+  /* ---- project cards ---- */
+  .grid{display:grid;grid-template-columns:1fr;gap:18px}
+  @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  .card{
+    background:var(--ink-2);border:1px solid var(--line);border-radius:14px;
+    padding:24px;display:flex;flex-direction:column;transition:.18s;
+  }
+  .card:hover{border-color:var(--amber);transform:translateY(-3px)}
+  .card .tag{
+    font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);
+    font-weight:600;margin-bottom:10px;
+  }
+  .card h3{font-size:1.16rem;font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
+  .field{margin-bottom:12px}
+  .field .lab{
+    font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    display:block;margin-bottom:3px;font-weight:600;
+  }
+  .field p{font-size:.95rem;color:#d9dce6}
+  .field.where{
+    border-top:1px solid var(--line);padding-top:12px;margin-top:14px;
+  }
+  .field.where .lab{color:var(--green)}
+  .field.where p{font-size:.9rem;color:var(--muted)}
+  .metric{
+    display:inline-flex;align-items:center;gap:7px;background:var(--amber-soft);
+    color:var(--amber);font-size:.82rem;font-weight:600;padding:5px 11px;border-radius:6px;margin-top:4px;
+  }
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 16px}
+  .chip{
+    font-size:.76rem;color:var(--muted);border:1px solid var(--line);
+    padding:3px 9px;border-radius:6px;
+  }
+  .card .foot{margin-top:auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .card .foot a{
+    font-size:.88rem;color:var(--amber);text-decoration:none;font-weight:600;
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .card .foot a:hover{text-decoration:underline}
+
+  /* ---- about / skills ---- */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:30px}
+  @media(min-width:760px){.about-grid{grid-template-columns:1.3fr 1fr}}
+  .about p{color:#d9dce6;margin-bottom:14px}
+  .skills h4{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin:0 0 10px;font-weight:600}
+  .skills ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+  .skills li{font-size:.82rem;color:var(--muted);border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+
+  /* ---- contact ---- */
+  .contact{text-align:center;padding:60px 0 40px}
+  .contact h2{font-size:1.8rem;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+  .contact p{color:var(--muted);margin-bottom:26px}
+  .contact .cta-row{justify-content:center}
+  .mailrow{
+    display:inline-flex;align-items:center;gap:10px;margin-top:22px;
+    border:1px dashed var(--line);border-radius:8px;padding:8px 8px 8px 14px;flex-wrap:wrap;justify-content:center;
+  }
+  .mailrow code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92rem;color:var(--paper)}
+  .copybtn{
+    background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:.8rem;
+    padding:4px 12px;border-radius:6px;cursor:pointer;transition:.15s;
+  }
+  .copybtn:hover{border-color:var(--amber);color:var(--amber)}
+  .copybtn.done{border-color:var(--green);color:var(--green)}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Chay Chauhan<span>.</span></div>
+    <nav class="toplinks">
+      <a href="#projects" data-i18n="nav.projects">Projects</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button class="active" data-set="en">EN</button>
+        <button data-set="zhs">简体</button>
+        <button data-set="zht">繁體</button>
+        <button data-set="ja">日本語</button>
+        <button data-set="th">ไทย</button>
+        <button data-set="vi">Tiếng Việt</button>
+        <button data-set="fil">Filipino</button>
+        <button data-set="de">Deutsch</button>
+        <button data-set="fr">Français</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="hero.eyebrow">AI Engineer · Agentic Systems &amp; RAG</span>
+    <h1 data-i18n="hero.h1">I build <em>AI systems</em> that do real work — and I measure whether they actually work.</h1>
+    <p class="lede" data-i18n="hero.lede">Agentic AI, retrieval-augmented generation (RAG), and LLM-powered automation, built in Python. Four years of data experience inside a regulated insurer, now applied to building AI tools for real business problems.</p>
+    <p class="plain" data-i18n="hero.plain">In plain terms: I build software that uses AI to answer questions, automate repetitive work, and make decisions — the kind of tools a business uses to save time and cut cost. Every project below links to the working code.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/chait6982" target="_blank" rel="noopener" data-i18n="hero.cta1">View my GitHub →</a>
+      <a class="btn btn-ghost" href="#projects" data-i18n="hero.cta2">See the projects</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="proj.head">Selected projects</h2>
+      <span class="count" data-i18n="proj.count">6 builds · all with working code</span>
+    </div>
+    <p class="sec-sub" data-i18n="proj.sub">Each card explains what the project is, what it is used for, where it applies in industry, and links to the code. No technical background needed.</p>
+
+    <div class="grid">
+
+      <!-- 1 RAG -->
+      <div class="card">
+        <span class="tag" data-i18n="p1.tag">RAG · Retrieval &amp; Search</span>
+        <h3 data-i18n="p1.h">Smart Document Q&amp;A System</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p1.what">An AI system that answers questions about a document by finding the right passages first, then writing a grounded answer — and it decides on its own whether to search the document, search the web, or answer directly.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p1.use">Letting a person ask plain questions of a large document (a report, contract, or manual) and get accurate, sourced answers instead of reading the whole thing.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p1.stand">I did not just build it — I measured it. Using an industry evaluation tool (RAGAS), the answers scored 97% on faithfulness (staying true to the source).</p><span class="metric" data-i18n="p1.metric">✓ 0.97 faithfulness · 0.92 precision</span></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Chroma vector database</span><span class="chip">Embeddings</span><span class="chip">RAGAS evaluation</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p1.where"><strong>Insurance &amp; finance:</strong> policy wordings, claim files, regulatory rulebooks. <strong>Pharmaceutical &amp; medical:</strong> trial protocols, drug monographs and clinical guidelines, as a research aid with a qualified person reviewing every answer. <strong>Government &amp; defence:</strong> legislation, procurement papers, technical manuals. <strong>Environment:</strong> long scientific and impact reports. Because answers are scored for faithfulness to the source, it suits regulated settings where an unsupported answer carries real risk.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/agentic-rag-chroma" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- 2 Research agent + MCP server -->
+      <div class="card">
+        <span class="tag" data-i18n="p2.tag">Agent Tools · Integration</span>
+        <h3 data-i18n="p2.h">Market Research Agent</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p2.what">A chat-based research assistant that calls live tools — web search, competitor analysis, pricing and news — through a custom tool server I built, then packages the results back into the conversation.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p2.use">Turning a slow manual research task into something a non-technical person can do by asking in a chat window, with the AI fetching and structuring the information.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p2.stand">The tool server is packaged with Docker, so it runs identically on any machine — a step toward production-ready, not just a demo.</p><span class="metric" data-i18n="p2.metric">✓ Containerised &amp; runnable</span></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">MCP server</span><span class="chip">n8n</span><span class="chip">Docker</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p2.where"><strong>Finance &amp; insurance:</strong> competitor monitoring, supplier and counterparty due diligence. <strong>Pharmaceutical:</strong> tracking rival pipelines and public regulatory announcements. <strong>Government &amp; defence:</strong> open-source information gathering from public sources. <strong>Environment:</strong> monitoring published data on emissions, incidents and policy change. Any team that currently pays people to read the internet and summarise it.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/marketintel-research-agent-n8n" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- 3 GTM capstone -->
+      <div class="card">
+        <span class="tag" data-i18n="p3.tag">Multi-Agent · Orchestration</span>
+        <h3 data-i18n="p3.h">Go-to-Market Strategy System</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p3.what">A team of four AI agents — planner, researcher, analyst and strategist — working in sequence to produce a market-entry strategy, built two different ways so the approaches can be compared directly.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p3.use">Automating a piece of business analysis that would normally take a team of people, while keeping every claim traceable to its source.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p3.stand">Every fact the agents use is tagged with where it came from, and the whole run is scored on quality — so the output is auditable, not a black box.</p></div>
+        <div class="stack"><span class="chip">CrewAI</span><span class="chip">n8n</span><span class="chip">Shared tool server</span><span class="chip">Evaluation</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p3.where"><strong>Pharmaceutical:</strong> market-entry planning for a new product or territory. <strong>Finance &amp; insurance:</strong> product launch, pricing and competitor research. <strong>Government:</strong> policy option appraisal, where each recommendation must be traceable to evidence. <strong>Research:</strong> structured evidence reviews in which every claim carries its source. The audit trail is the point — it is built for settings where you must show your working.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/gtm-strategy-system-capstone" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- 4 AutoGen triage -->
+      <div class="card">
+        <span class="tag" data-i18n="p4.tag">Multi-Agent · Automation</span>
+        <h3 data-i18n="p4.h">Support Ticket Triage Team</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p4.what">A group of AI agents that discuss incoming support tickets among themselves and decide, together, which ones to prioritise.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p4.use">Helping a team handle a flood of requests by having AI sort and rank them first, so people focus on what matters most.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p4.stand">The agents coordinate with each other (agent-to-agent), rather than a single AI making every call alone.</p></div>
+        <div class="stack"><span class="chip">AutoGen</span><span class="chip">Azure OpenAI</span><span class="chip">Python</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p4.where"><strong>Insurance:</strong> first-notification-of-loss and claims triage, routing and ranking incoming claims. <strong>Medical:</strong> sorting patient enquiries and administrative requests so clinical staff see urgent items first — ranking only, never a clinical decision. <strong>Government:</strong> citizen service requests. <strong>Defence &amp; environment:</strong> incident and fault reports ranked by severity. Any high-volume queue where the cost of missing the urgent item is high.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/autogen-multi-agent-triage" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- 5 Accelerator planner -->
+      <div class="card">
+        <span class="tag" data-i18n="p5.tag">Multi-Agent · Memory</span>
+        <h3 data-i18n="p5.h">Startup Accelerator Planner</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p5.what">A set of AI agents (research, funding, pitch coach, critic) that plan an organisation's next steps, share a common memory, and improve their own output through a review-and-refine loop.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p5.use">Producing a first-draft plan — market research, funding options and a pitch outline — that a person then refines rather than starting from a blank page.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p5.stand">It runs with no paid AI service by default (built-in offline mode), so it can be demonstrated for free, and a critic agent checks the work before it is finalised.</p></div>
+        <div class="stack"><span class="chip">Python</span><span class="chip">Vector memory</span><span class="chip">Critic–refine loop</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p5.where"><strong>Government &amp; public sector:</strong> drafting grant and innovation-funding applications. <strong>Environment:</strong> planning and costing sustainability initiatives. <strong>Pharmaceutical &amp; medical:</strong> early-stage research spin-out and translation planning. <strong>Finance:</strong> investment screening, where the critic agent stress-tests the case before a person reads it. The offline mode also suits organisations that cannot send data to an external AI service.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/accelerator-planner-multi-agent" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- 6 MCP tool server -->
+      <div class="card">
+        <span class="tag" data-i18n="p6.tag">Agent Infrastructure · Containerised</span>
+        <h3 data-i18n="p6.h">Market Intelligence Tool Server</h3>
+        <div class="field"><span class="lab" data-i18n="lab.what">What it is</span><p data-i18n="p6.what">A tool server that gives any AI agent live capabilities — company overview, competitor list, product portfolio, pricing snapshot and news pulse — using MCP, the emerging open standard for connecting AI to external systems.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.use">What it is used for</span><p data-i18n="p6.use">Letting an AI assistant reach real, current information from outside itself, instead of relying only on what it learned during training.</p></div>
+        <div class="field"><span class="lab" data-i18n="lab.stand">Why it stands out</span><p data-i18n="p6.stand">It is packaged with Docker and genuinely runs: the container serves the tools over the network, with credentials injected at runtime rather than written into the code.</p><span class="metric" data-i18n="p6.metric">✓ Docker · FastMCP · 5 live tools</span></div>
+        <div class="stack"><span class="chip">MCP</span><span class="chip">FastMCP</span><span class="chip">Docker</span><span class="chip">Python</span></div>
+        <div class="field where"><span class="lab" data-i18n="lab.where">Where it applies</span><p data-i18n="p6.where"><strong>Finance &amp; insurance:</strong> due diligence and competitor monitoring. <strong>Pharmaceutical:</strong> pipeline and regulatory tracking. <strong>Government &amp; defence:</strong> open-source information gathering. <strong>Environment:</strong> monitoring published data. The pattern matters more than these particular tools — any internal system can be exposed to an AI agent this way, which is how most organisations will connect AI to their own data.</p></div>
+        <div class="foot"><a href="https://github.com/chait6982/marketintel-mcp-server" target="_blank" rel="noopener" data-i18n="cta.code">View code →</a></div>
+      </div>
+
+      <!-- ============================================================
+           SPARE CARD — Serial & Parallel Workflows. Remove the comment
+           markers around this block if you ever want a seventh card, or
+           to swap one out. Not shown by default.
+      =================================================================
+      <div class="card">
+        <span class="tag">Workflow · Foundations</span>
+        <h3>Serial &amp; Parallel Agent Workflows</h3>
+        <div class="field"><span class="lab">What it is</span><p>Two AI agents (a researcher and a writer) set up to run two ways — one after another, and at the same time — to show how task ordering affects speed and results.</p></div>
+        <div class="field"><span class="lab">What it is used for</span><p>Demonstrating a core building block of AI automation: knowing when tasks must run in order versus when they can run together to save time.</p></div>
+        <div class="field"><span class="lab">Why it stands out</span><p>A clear, hands-on comparison of the two execution styles — the kind of decision that matters in real production systems.</p></div>
+        <div class="stack"><span class="chip">CrewAI</span><span class="chip">Async execution</span><span class="chip">Python</span></div>
+        <div class="foot"><a href="https://github.com/chait6982/crewai-serial-parallel-pipeline" target="_blank" rel="noopener">View code →</a></div>
+      </div>
+      ============================================================ -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="about.h">About</h2></div>
+    <div class="about-grid">
+      <div class="about">
+        <p data-i18n="about.p1">I am an AI engineer specialising in agentic systems — I build and evaluate LLM-powered agents, RAG pipelines and automation in Python. What makes my work different is where I have come from: four years inside a regulated (FCA) insurer, working hands-on with claims and risk data in SQL and Python. That means I build AI for real business problems — cost, accuracy and auditability — not just demos.</p>
+        <p data-i18n="about.p2">I care about whether things actually work. Across my projects you will see evaluation, measurement and observability built in, because "it produced an answer" and "it produced the right answer" are different things. I would rather find a failure in evaluation than in production.</p>
+        <p data-i18n="about.p3">I am commencing an MSc in Artificial Intelligence at the University of Hull in 2026, and I use AI tools (Claude, Cursor, Copilot) daily in my own work. I am a British citizen based in the UK, open to remote and hybrid roles and willing to relocate internationally.</p>
+      </div>
+      <div class="skills">
+        <h4 data-i18n="sk.h1">Agentic AI &amp; LLMs</h4>
+        <ul><li>RAG</li><li>LangGraph</li><li>LangChain</li><li>CrewAI</li><li>AutoGen</li><li>MCP</li><li>Prompt engineering</li><li>Evaluation (RAGAS)</li></ul>
+        <h4 data-i18n="sk.h2">Data &amp; Retrieval</h4>
+        <ul><li>Vector databases (Chroma, FAISS)</li><li>Embeddings</li><li>Semantic search</li></ul>
+        <h4 data-i18n="sk.h3">Engineering</h4>
+        <ul><li>Python</li><li>SQL</li><li>APIs</li><li>Docker</li><li>Git</li><li>n8n</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 data-i18n="contact.h">Let's talk</h2>
+    <p data-i18n="contact.p">Open to AI Engineer, Applied AI and Agentic AI roles — remote or hybrid.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" id="mailto-btn" href="mailto:chait6982@gmail.com?subject=Opportunity%20-%20AI%20Engineer&amp;body=Hi%20Chay%2C%0A%0A" data-i18n="contact.email">Email me</a>
+      <a class="btn btn-ghost" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=chait6982@gmail.com&amp;su=Opportunity%20-%20AI%20Engineer" target="_blank" rel="noopener" data-i18n="contact.gmail">Open in Gmail</a>
+      <a class="btn btn-ghost" href="https://github.com/chait6982" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/chaychauhan/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="mailrow">
+      <code>chait6982@gmail.com</code>
+      <button class="copybtn" id="copybtn" data-i18n="contact.copy">Copy address</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" data-i18n="footer.txt">© 2026 Chay Chauhan · Built to make the work easy to understand — the code speaks for itself.</div>
+</footer>
+
+<script>
+/* ============================================================
+   Translations. To edit a language, find its block below and
+   change the text. To add a language: copy a block, change the
+   key, and add a matching <button data-set="yourkey"> in the
+   header. Anything missing falls back to English automatically.
+   ============================================================ */
+const I18N = {
+
+en: {}, /* English lives in the HTML itself and is captured on load */
+
+zhs: {
+  "nav.projects":`项目`,
+  "nav.about":`关于`,
+  "nav.contact":`联系方式`,
+  "hero.eyebrow":`AI 工程师 · 智能体系统和 RAG`,
+  "hero.h1":`我构建能够真正发挥作用的<em>人工智能系统</em>——并衡量它们是否真正有效。`,
+  "hero.lede":`智能体人工智能、检索增强生成（RAG）和由大语言模型（LLM）驱动的自动化，全部用 Python 构建。在受监管的保险公司积累了四年数据经验，现应用于构建解决实际业务问题的人工智能工具。`,
+  "hero.plain":`简而言之：我构建的软件使用人工智能来回答问题、自动化重复工作和辅助决策——这正是企业用来节省时间和降低成本的工具。下面每个项目都链接到可运行的代码。`,
+  "hero.cta1":`查看我的 GitHub →`,
+  "hero.cta2":`查看项目`,
+  "proj.head":`精选项目`,
+  "proj.count":`6 个项目 · 全部附带可运行代码`,
+  "proj.sub":`每张卡片都说明了项目是什么、用途、行业应用以及代码链接。无需技术背景即可读懂。`,
+  "lab.what":`它是什么`,
+  "lab.use":`它的用途`,
+  "lab.stand":`为什么它脱颖而出`,
+  "lab.where":`适用于何处`,
+  "cta.code":`查看代码 →`,
+  "cta.code2":`查看工具服务器 →`,
+  "p1.tag":`RAG · 检索和搜索`,
+  "p1.h":`智能文档问答系统`,
+  "p1.what":`一种人工智能系统，通过首先找到正确的段落，然后编写有依据的答案来回答有关文档的问题，并自行决定是搜索文档、搜索网络还是直接回答。`,
+  "p1.use":`让人们对大型文件（报告、合同或手册）提出简单的问题并获得准确且标注来源的答案，而不必阅读全文。`,
+  "p1.stand":`我不只是构建了它——我还对它进行了测量。使用行业评估工具（RAGAS），答案的忠实度得分为 97%（忠实于来源）。`,
+  "p1.metric":`✓ 0.97 忠实度 · 0.92 精度`,
+  "p1.where":`<strong>保险和金融：</strong>保单措辞、索赔文件、监管规则手册。<strong>制药和医疗：</strong>试验方案、药物专著和临床指南，作为研究辅助工具，由合格的人员审查每个答案。<strong>政府和国防：</strong>立法、采购文件、技术手册。<strong>环境：</strong>篇幅较长的科学报告和影响评估报告。由于答案会根据对来源的忠实度进行评分，因此它适用于那些没有依据的答案会带来实际风险的受监管环境。`,
+  "p2.tag":`智能体工具 · 集成`,
+  "p2.h":`市场研究智能体`,
+  "p2.what":`基于聊天的研究助理，通过我构建的自定义工具服务器调用实时工具（网络搜索、竞争对手分析、定价和新闻），然后将结果整理后返回到对话中。`,
+  "p2.use":`将缓慢的手动研究任务变成非技术人员在聊天窗口中提问即可完成的事情，由人工智能负责获取并结构化信息。`,
+  "p2.stand":`工具服务器与 Docker 一起打包，因此它在任何机器上都能以相同方式运行——迈向生产就绪的一步，而不仅仅是演示。`,
+  "p2.metric":`✓ 容器化且可运行`,
+  "p2.where":`<strong>金融和保险：</strong>竞争对手监控、供应商和交易对手尽职调查。<strong>制药：</strong>跟踪竞争对手的研发管线和公开监管公告。<strong>政府和国防：</strong>从公开来源收集开源情报。<strong>环境：</strong>监控已发布的排放、事件和政策变化数据。适用于目前需要付钱请人阅读网络信息并进行总结的任何团队。`,
+  "p3.tag":`多智能体 · 编排`,
+  "p3.h":`市场进入战略系统`,
+  "p3.what":`由四个人工智能智能体（规划师、研究员、分析师和战略家）组成的团队按顺序协作制定市场进入策略，并以两种不同的方式构建，以便直接比较这两种方法。`,
+  "p3.use":`自动化通常需要一整个团队才能完成的业务分析，同时确保每项论断都可追溯到其来源。`,
+  "p3.stand":`智能体使用的每个事实都标注了其来源，并且整个运行过程都会根据质量进行评分——因此输出是可审计的，而不是黑箱。`,
+  "p3.where":`<strong>制药：</strong>新产品或新市场的进入规划。<strong>金融和保险：</strong>产品发布、定价和竞争对手研究。<strong>政府：</strong>政策方案评估，其中每项建议都必须可追溯到证据。<strong>研究：</strong>结构化的证据综述，其中每项论断都标明来源。可审计性正是核心——它专为必须展示推理过程的场景而构建。`,
+  "p4.tag":`多智能体 · 自动化`,
+  "p4.h":`工单分诊智能体团队`,
+  "p4.what":`一组人工智能智能体相互讨论收到的支持工单，并共同决定优先处理哪些。`,
+  "p4.use":`通过让人工智能先对请求进行分类和排序，帮助团队处理大量请求，使人们能够专注于最重要的事情。`,
+  "p4.stand":`多个智能体相互协调（智能体之间协作），而不是由单个人工智能独自做出每一个判断。`,
+  "p4.where":`<strong>保险：</strong>报案受理与理赔分诊，对新进案件进行路由和排序。<strong>医疗：</strong>对患者咨询和行政请求进行排序，使临床人员先看到紧急事项——仅做排序，绝不替代临床决策。<strong>政府：</strong>公民服务申请。<strong>国防和环境：</strong>按严重程度排序的事件和故障报告。适用于任何漏看紧急事项代价高昂的大批量队列。`,
+  "p5.tag":`多智能体 · 共享记忆`,
+  "p5.h":`创业加速器规划系统`,
+  "p5.what":`一组人工智能智能体（研究、融资、路演教练、批评者），规划组织的下一步行动，共享统一记忆，并通过审阅与修正循环改进自身的输出。`,
+  "p5.use":`制定一份初稿计划——市场研究、融资选项和路演大纲——然后由人进一步完善，而不是从空白页开始。`,
+  "p5.stand":`默认情况下，它无需任何付费人工智能服务即可运行（内置离线模式），因此可以免费演示，并且批评者智能体会在成果定稿前进行检查。`,
+  "p5.where":`<strong>政府和公共部门：</strong>起草补助金和创新资金申请。<strong>环境：</strong>可持续发展举措的规划与成本测算。<strong>制药和医疗：</strong>早期研究成果的分拆与转化研究规划。<strong>金融：</strong>投资筛选，由批评者智能体在人工审阅之前对论证进行压力测试。离线模式也适合无法将数据发送到外部人工智能服务的组织。`,
+  "p6.tag":`智能体基础设施 · 容器化`,
+  "p6.h":`市场情报工具服务器`,
+  "p6.what":`一种工具服务器，使用 MCP（用于将人工智能连接到外部系统的新兴开放标准）为任何人工智能智能体提供实时能力：公司概览、竞争对手列表、产品组合、价格快照和新闻动态。`,
+  "p6.use":`让人工智能助理能够从外部获取真实的、当前的信息，而不是仅依赖于训练期间学到的知识。`,
+  "p6.stand":`它与 Docker 一起打包并真正可运行：容器通过网络提供工具服务，凭据在运行时注入而不是写死在代码中。`,
+  "p6.metric":`✓ Docker · FastMCP · 5 个实时工具`,
+  "p6.where":`<strong>金融和保险：</strong>尽职调查和竞争对手监控。<strong>制药：</strong>研发管线和监管动态跟踪。<strong>政府和国防：</strong>开源情报收集。<strong>环境：</strong>监控已发布的数据。比这些具体工具更重要的是这套模式——任何内部系统都可以通过这种方式开放给人工智能智能体调用，而这正是大多数组织将人工智能接入自有数据的方式。`,
+  "about.h":`关于`,
+  "about.p1":`我是一名专注于智能体系统的人工智能工程师——我用 Python 构建和评估由大语言模型驱动的智能体、RAG 管道和自动化。我的工作与众不同之处在于我的出身：在受监管（FCA）的保险公司工作了四年，用 SQL 和 Python 亲自处理理赔和风险数据。这意味着我构建人工智能是为了解决真正的业务问题——成本、准确性和可审计性——而不仅仅是做演示。`,
+  "about.p2":`我关心事情是否真的有效。在我的项目中，你会看到内置的评估、测量和可观测性，因为“它产生了答案”和“它产生了正确的答案”是不同的事情。我宁愿在评估阶段发现失败，而不是在生产环境中发现。`,
+  "about.p3":`我将于 2026 年开始在赫尔大学攻读人工智能硕士学位，并且每天在自己的工作中使用人工智能工具（Claude、Cursor、Copilot）。我是英国公民，现居英国，接受远程与混合办公的职位，并愿意前往海外工作。`,
+  "sk.h1":`智能体人工智能和大语言模型`,
+  "sk.h2":`数据和检索`,
+  "sk.h3":`工程`,
+  "contact.h":`我们来谈谈`,
+  "contact.p":`欢迎人工智能工程师、应用人工智能和智能体人工智能相关职位的机会——远程或混合办公均可。`,
+  "contact.email":`给我发电子邮件`,
+  "contact.gmail":`在 Gmail 中打开`,
+  "contact.copy":`复制地址`,
+  "contact.copied":`已复制 ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · 旨在使工作易于理解 — 代码不言而喻。`
+},
+
+zht: {
+  "nav.projects":`項目`,
+  "nav.about":`關於`,
+  "nav.contact":`聯繫方式`,
+  "hero.eyebrow":`AI 工程師 · 智能體系統和 RAG`,
+  "hero.h1":`我構建能夠真正發揮作用的<em>人工智能系統</em>——並衡量它們是否真正有效。`,
+  "hero.lede":`智能體人工智能、檢索增強生成（RAG）和由大語言模型（LLM）驅動的自動化，全部用 Python 構建。在受監管的保險公司積累了四年數據經驗，現應用於構建解決實際業務問題的人工智能工具。`,
+  "hero.plain":`簡而言之：我構建的軟件使用人工智能來回答問題、自動化重複工作和輔助決策——這正是企業用來節省時間和降低成本的工具。下面每個項目都鏈接到可運行的代碼。`,
+  "hero.cta1":`查看我的 GitHub →`,
+  "hero.cta2":`查看項目`,
+  "proj.head":`精選項目`,
+  "proj.count":`6 個項目 · 全部附帶可運行代碼`,
+  "proj.sub":`每張卡片都說明了項目是什麼、用途、行業應用以及代碼鏈接。無需技術背景即可讀懂。`,
+  "lab.what":`它是什麼`,
+  "lab.use":`它的用途`,
+  "lab.stand":`爲什麼它脫穎而出`,
+  "lab.where":`適用於何處`,
+  "cta.code":`查看代碼 →`,
+  "cta.code2":`查看工具服務器 →`,
+  "p1.tag":`RAG · 檢索和搜索`,
+  "p1.h":`智能文檔問答系統`,
+  "p1.what":`一種人工智能系統，通過首先找到正確的段落，然後編寫有依據的答案來回答有關文檔的問題，並自行決定是搜索文檔、搜索網絡還是直接回答。`,
+  "p1.use":`讓人們對大型文件（報告、合同或手冊）提出簡單的問題並獲得準確且標註來源的答案，而不必閱讀全文。`,
+  "p1.stand":`我不只是構建了它——我還對它進行了測量。使用行業評估工具（RAGAS），答案的忠實度得分爲 97%（忠實於來源）。`,
+  "p1.metric":`✓ 0.97 忠實度 · 0.92 精度`,
+  "p1.where":`<strong>保險和金融：</strong>保單措辭、索賠文件、監管規則手冊。<strong>製藥和醫療：</strong>試驗方案、藥物專著和臨牀指南，作爲研究輔助工具，由合格的人員審查每個答案。<strong>政府和國防：</strong>立法、採購文件、技術手冊。<strong>環境：</strong>篇幅較長的科學報告和影響評估報告。由於答案會根據對來源的忠實度進行評分，因此它適用於那些沒有依據的答案會帶來實際風險的受監管環境。`,
+  "p2.tag":`智能體工具 · 集成`,
+  "p2.h":`市場研究智能體`,
+  "p2.what":`基於聊天的研究助理，通過我構建的自定義工具服務器調用實時工具（網絡搜索、競爭對手分析、定價和新聞），然後將結果整理後返回到對話中。`,
+  "p2.use":`將緩慢的手動研究任務變成非技術人員在聊天窗口中提問即可完成的事情，由人工智能負責獲取並結構化信息。`,
+  "p2.stand":`工具服務器與 Docker 一起打包，因此它在任何機器上都能以相同方式運行——邁向生產就緒的一步，而不僅僅是演示。`,
+  "p2.metric":`✓ 容器化且可運行`,
+  "p2.where":`<strong>金融和保險：</strong>競爭對手監控、供應商和交易對手盡職調查。<strong>製藥：</strong>跟蹤競爭對手的研發管線和公開監管公告。<strong>政府和國防：</strong>從公開來源收集開源情報。<strong>環境：</strong>監控已發佈的排放、事件和政策變化數據。適用於目前需要付錢請人閱讀網絡信息並進行總結的任何團隊。`,
+  "p3.tag":`多智能體 · 編排`,
+  "p3.h":`市場進入戰略系統`,
+  "p3.what":`由四個人工智能智能體（規劃師、研究員、分析師和戰略家）組成的團隊按順序協作制定市場進入策略，並以兩種不同的方式構建，以便直接比較這兩種方法。`,
+  "p3.use":`自動化通常需要一整個團隊才能完成的業務分析，同時確保每項論斷都可追溯到其來源。`,
+  "p3.stand":`智能體使用的每個事實都標註了其來源，並且整個運行過程都會根據質量進行評分——因此輸出是可審計的，而不是黑箱。`,
+  "p3.where":`<strong>製藥：</strong>新產品或新市場的進入規劃。<strong>金融和保險：</strong>產品發佈、定價和競爭對手研究。<strong>政府：</strong>政策方案評估，其中每項建議都必須可追溯到證據。<strong>研究：</strong>結構化的證據綜述，其中每項論斷都標明來源。可審計性正是核心——它專爲必須展示推理過程的場景而構建。`,
+  "p4.tag":`多智能體 · 自動化`,
+  "p4.h":`工單分診智能體團隊`,
+  "p4.what":`一組人工智能智能體相互討論收到的支持工單，並共同決定優先處理哪些。`,
+  "p4.use":`通過讓人工智能先對請求進行分類和排序，幫助團隊處理大量請求，使人們能夠專注於最重要的事情。`,
+  "p4.stand":`多個智能體相互協調（智能體之間協作），而不是由單個人工智能獨自做出每一個判斷。`,
+  "p4.where":`<strong>保險：</strong>報案受理與理賠分診，對新進案件進行路由和排序。<strong>醫療：</strong>對患者諮詢和行政請求進行排序，使臨牀人員先看到緊急事項——僅做排序，絕不替代臨牀決策。<strong>政府：</strong>公民服務申請。<strong>國防和環境：</strong>按嚴重程度排序的事件和故障報告。適用於任何漏看緊急事項代價高昂的大批量隊列。`,
+  "p5.tag":`多智能體 · 共享記憶`,
+  "p5.h":`創業加速器規劃系統`,
+  "p5.what":`一組人工智能智能體（研究、融資、路演教練、批評者），規劃組織的下一步行動，共享統一記憶，並通過審閱與修正循環改進自身的輸出。`,
+  "p5.use":`制定一份初稿計劃——市場研究、融資選項和路演大綱——然後由人進一步完善，而不是從空白頁開始。`,
+  "p5.stand":`默認情況下，它無需任何付費人工智能服務即可運行（內置離線模式），因此可以免費演示，並且批評者智能體會在成果定稿前進行檢查。`,
+  "p5.where":`<strong>政府和公共部門：</strong>起草補助金和創新資金申請。<strong>環境：</strong>可持續發展舉措的規劃與成本測算。<strong>製藥和醫療：</strong>早期研究成果的分拆與轉化研究規劃。<strong>金融：</strong>投資篩選，由批評者智能體在人工審閱之前對論證進行壓力測試。離線模式也適合無法將數據發送到外部人工智能服務的組織。`,
+  "p6.tag":`智能體基礎設施 · 容器化`,
+  "p6.h":`市場情報工具服務器`,
+  "p6.what":`一種工具服務器，使用 MCP（用於將人工智能連接到外部系統的新興開放標準）爲任何人工智能智能體提供實時能力：公司概覽、競爭對手列表、產品組合、價格快照和新聞動態。`,
+  "p6.use":`讓人工智能助理能夠從外部獲取真實的、當前的信息，而不是僅依賴於訓練期間學到的知識。`,
+  "p6.stand":`它與 Docker 一起打包並真正可運行：容器通過網絡提供工具服務，憑據在運行時注入而不是寫死在代碼中。`,
+  "p6.metric":`✓ Docker · FastMCP · 5 個實時工具`,
+  "p6.where":`<strong>金融和保險：</strong>盡職調查和競爭對手監控。<strong>製藥：</strong>研發管線和監管動態跟蹤。<strong>政府和國防：</strong>開源情報收集。<strong>環境：</strong>監控已發佈的數據。比這些具體工具更重要的是這套模式——任何內部系統都可以通過這種方式開放給人工智能智能體調用，而這正是大多數組織將人工智能接入自有數據的方式。`,
+  "about.h":`關於`,
+  "about.p1":`我是一名專注於智能體系統的人工智能工程師——我用 Python 構建和評估由大語言模型驅動的智能體、RAG 管道和自動化。我的工作與衆不同之處在於我的出身：在受監管（FCA）的保險公司工作了四年，用 SQL 和 Python 親自處理理賠和風險數據。這意味着我構建人工智能是爲了解決真正的業務問題——成本、準確性和可審計性——而不僅僅是做演示。`,
+  "about.p2":`我關心事情是否真的有效。在我的項目中，你會看到內置的評估、測量和可觀測性，因爲“它產生了答案”和“它產生了正確的答案”是不同的事情。我寧願在評估階段發現失敗，而不是在生產環境中發現。`,
+  "about.p3":`我將於 2026 年開始在赫爾大學攻讀人工智能碩士學位，並且每天在自己的工作中使用人工智能工具（Claude、Cursor、Copilot）。我是英國公民，現居英國，接受遠端與混合辦公的職位，並願意前往海外工作。`,
+  "sk.h1":`智能體人工智能和大語言模型`,
+  "sk.h2":`數據和檢索`,
+  "sk.h3":`工程`,
+  "contact.h":`我們來談談`,
+  "contact.p":`歡迎人工智能工程師、應用人工智能和智能體人工智能相關職位的機會——遠程或混合辦公均可。`,
+  "contact.email":`給我發電子郵件`,
+  "contact.gmail":`在 Gmail 中打開`,
+  "contact.copy":`複製地址`,
+  "contact.copied":`已複製 ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · 旨在使工作易於理解 — 代碼不言而喻。`
+},
+
+ja: {
+  "nav.projects":`プロジェクト`,
+  "nav.about":`プロフィール`,
+  "nav.contact":`お問い合わせ`,
+  "hero.eyebrow":`AIエンジニア · エージェンティック・システム & RAG`,
+  "hero.h1":`私は実務をこなす<em>AIシステム</em>を構築し、それらが実際に機能しているかを検証しています。`,
+  "hero.lede":`Pythonを用いたエージェンティックAI、RAG（検索拡張生成）、LLM（大規模言語モデル）による自動化システムの開発。規制の厳しい保険業界で4年間データ関連業務に従事した経験を活かし、実際のビジネス課題を解決するAIツールを構築しています。`,
+  "hero.plain":`簡単に言えば、AIを活用して「質問への回答」「反復作業の自動化」「意思決定の支援」を行うソフトウェアを開発しています。これらは、企業が時間やコストを削減するために活用できるツールです。以下の各プロジェクトから、実際の動作するコードをご覧いただけます。`,
+  "hero.cta1":`GitHubを見る →`,
+  "hero.cta2":`プロジェクト一覧`,
+  "proj.head":`主なプロジェクト`,
+  "proj.count":`6つの開発事例 · すべて動作するコード付き`,
+  "proj.sub":`各カードでは、プロジェクトの概要、用途、業界での活用シーンを解説し、コードへのリンクを掲載しています。専門的な技術知識は不要です。`,
+  "lab.what":`概要`,
+  "lab.use":`用途`,
+  "lab.stand":`特徴`,
+  "lab.where":`適用分野`,
+  "cta.code":`コードを見る →`,
+  "cta.code2":`ツールサーバーを見る →`,
+  "p1.tag":`RAG · 検索・情報抽出`,
+  "p1.h":`スマート・ドキュメントQ&Aシステム`,
+  "p1.what":`文書に関する質問に対し、適切な箇所を特定した上で、根拠に基づいた回答を生成するAIシステムです。文書内検索、ウェブ検索、あるいは直接回答のいずれを行うべきかをAIが自律的に判断します。`,
+  "p1.use":`レポート、契約書、マニュアルなどの膨大な文書に対し、自然な言葉で質問し、文書全体を読み込むことなく、根拠が明示された正確な回答を得ることができます。`,
+  "p1.stand":`単に構築するだけでなく、性能評価も行いました。業界標準の評価ツール（RAGAS）を用いた測定の結果、回答の「忠実性（ソース情報への正確さ）」において97%というスコアを達成しました。`,
+  "p1.metric":`✓ 忠実度 0.97 · 精度 0.92`,
+  "p1.where":`<strong>保険・金融：</strong>保険約款、保険金請求関連書類、規制関連の規定集。<strong>製薬・医療：</strong>治験プロトコル、医薬品情報（モノグラフ）、臨床ガイドライン（専門家がすべての回答を確認する前提での研究支援として）。<strong>政府・防衛：</strong>法案・法令、調達関連文書、技術マニュアル。<strong>環境：</strong>長大な科学的報告書や環境影響評価書。回答は情報源への忠実度に基づいて評価されるため、根拠のない回答が重大なリスクを招くような、規制の厳しい環境に適しています。`,
+  "p2.tag":`エージェントツール · 統合`,
+  "p2.h":`市場調査エージェント`,
+  "p2.what":`チャット形式の調査アシスタント。独自構築したツールサーバーを介して、ウェブ検索、競合分析、価格調査、ニュース収集などのリアルタイムツールを呼び出し、その結果を会話の中に組み込んで提示します。`,
+  "p2.use":`時間のかかる手作業の調査業務を、チャット画面での質問だけで実行可能なプロセスへと転換します。AIが情報の収集と構造化を自動的に行います。`,
+  "p2.stand":`ツールサーバーはDockerでパッケージ化されているため、どのマシンでも同じように動作します。単なるデモにとどまらず、本番環境への導入を見据えた設計となっています。`,
+  "p2.metric":`✓ コンテナ化・実行可能`,
+  "p2.where":`<strong>金融・保険：</strong>競合他社の監視、サプライヤーや取引相手のデューデリジェンス（適格性調査）。<strong>製薬：</strong>競合他社の開発パイプラインや規制当局の公表情報の追跡。<strong>政府・防衛：</strong>公開情報源からのオープンソース情報の収集。<strong>環境：</strong>排出量、事故、政策変更に関する公表データの監視。現在、インターネット上の情報を読み込み、要約する作業に人手を割いているあらゆるチーム。`,
+  "p3.tag":`マルチエージェント · オーケストレーション`,
+  "p3.h":`市場参入戦略システム`,
+  "p3.what":`プランナー、リサーチャー、アナリスト、ストラテジストという4つのAIエージェントチームが連携し、市場参入戦略を策定します。アプローチを直接比較できるよう、2通りの異なる方法で構築されています。`,
+  "p3.use":`通常はチーム体制で行うビジネス分析業務の一部を自動化しつつ、すべての主張について情報源を追跡可能にします。`,
+  "p3.stand":`エージェントが使用するすべての事実には情報源がタグ付けされ、実行プロセス全体が品質評価されます。そのため、出力結果は「ブラックボックス」ではなく、検証（監査）可能なものとなっています。`,
+  "p3.where":`<strong>製薬：</strong>新製品や新規市場への参入計画の策定。<strong>金融・保険：</strong>製品の市場投入、価格設定、競合調査。<strong>政府：</strong>政策案の評価（各提言が証拠に基づいていることの追跡が必要な場合）。<strong>研究：</strong>構造化されたエビデンスレビュー（すべての主張に情報源が明記される形式）。「監査証跡（プロセスの記録）」が重要であり、作業の根拠や経緯を明示する必要がある環境向けに設計されています。`,
+  "p4.tag":`マルチエージェント · 自動化`,
+  "p4.h":`サポートチケット・トリアージチーム`,
+  "p4.what":`AIエージェントのグループが、受信したサポートチケットについて互いに協議し、どのチケットを優先的に処理すべきかを共同で決定します。`,
+  "p4.use":`AIがリクエストを事前に分類・優先順位付けすることで、チームが大量のリクエストを処理するのを支援し、人間は最も重要な業務に集中できるようにします。`,
+  "p4.stand":`単一のAIがすべての判断を単独で行うのではなく、複数のエージェントが互いに連携（エージェント間連携）して動作します。`,
+  "p4.where":`<strong>保険：</strong>損害発生の第一報（FNOL）および保険金請求のトリアージ（優先順位付け）、振り分け、ランク付け。<strong>医療：</strong>患者からの問い合わせや事務的な依頼の分類（臨床スタッフが緊急性の高い案件を優先的に確認できるようにするため。あくまで優先順位付けであり、臨床的な判断を行うものではありません）。<strong>政府：</strong>市民からのサービス利用申請。<strong>防衛・環境：</strong>重大度に応じた事故や障害報告のランク付け。緊急性の高い案件を見落とすことによる損失やリスクが大きい、大量の案件を処理する業務全般。`,
+  "p5.tag":`マルチエージェント · メモリ`,
+  "p5.h":`スタートアップ・アクセラレーター・プランナー`,
+  "p5.what":`組織の次なるステップを計画するAIエージェント群（リサーチ、資金調達、ピッチコーチ、批評家）です。これらは共通のメモリを共有し、レビューと改善のサイクルを通じて自らのアウトプットを向上させます。`,
+  "p5.use":`白紙の状態から始めるのではなく、市場調査、資金調達の選択肢、ピッチの構成案を含む計画の「初稿」を作成し、その後に人間が内容をブラッシュアップします。`,
+  "p5.stand":`デフォルトで有料のAIサービスを必要とせず動作するため（オフラインモードを内蔵）、無料でデモを行うことが可能です。また、最終的な出力が確定する前に、評価用エージェントが内容をチェックします。`,
+  "p5.where":`<strong>政府・公共部門：</strong>助成金やイノベーション関連の資金調達申請書の作成。<strong>環境：</strong>サステナビリティ（持続可能性）施策の計画策定とコスト試算。<strong>製薬・医療：</strong>初期段階の研究からのスピンアウト（事業化）やトランスレーショナルリサーチ（橋渡し研究）の計画策定。<strong>金融：</strong>投資案件のスクリーニング（人間が内容を確認する前に、AI内の「批判的エージェント」が案件の妥当性をストレステストする）。オフラインモードは、外部のAIサービスにデータを送信できない組織にも適しています。`,
+  "p6.tag":`エージェント・インフラストラクチャ · コンテナ化`,
+  "p6.h":`マーケット・インテリジェンス・ツールサーバー`,
+  "p6.what":`AIと外部システムを接続するための新たなオープン標準であるMCP（Model Context Protocol）を活用し、あらゆるAIエージェントにリアルタイム情報へのアクセス機能（企業概要、競合リスト、製品ポートフォリオ、価格情報、最新ニュースなど）を提供するツールサーバーです。`,
+  "p6.use":`AIアシスタントが学習時に得た知識だけに頼るのではなく、外部の最新かつリアルな情報にアクセスできるようにします。`,
+  "p6.stand":`Dockerでパッケージ化されており、実際に稼働可能な状態で提供されます。コンテナがネットワーク経由でツールを提供し、認証情報はコードに埋め込むのではなく、実行時に注入される仕組みになっています。`,
+  "p6.metric":`✓ Docker · FastMCP · 5つのライブツール`,
+  "p6.where":`<strong>金融・保険：</strong>デューデリジェンスおよび競合他社の監視。<strong>製薬：</strong>開発パイプラインおよび規制関連情報の追跡。<strong>政府・防衛</strong>分野ではオープンソース情報の収集、<strong>環境</strong>分野では公開データの監視といった用途があります。重要なのは個々のツールそのものではなく、その「パターン」です。この方法であれば、あらゆる社内システムをAIエージェントに接続することが可能であり、多くの組織が自社のデータとAIを連携させる際には、この手法が採用されることになるでしょう。`,
+  "about.h":`プロフィール`,
+  "about.p1":`私はエージェント型システムを専門とするAIエンジニアです。Pythonを用いて、LLM（大規模言語モデル）を活用したエージェント、RAGパイプライン、自動化システムの構築と評価を行っています。私の強みは、規制（FCA）下にある保険会社で4年間勤務し、SQLやPythonを駆使して保険金請求やリスクデータの実務に携わった経験にあります。単なるデモではなく、コスト、精度、監査可能性といった現実のビジネス課題を解決するためのAIを構築しています。`,
+  "about.p2":`私は「実際に機能するかどうか」を重視しています。どのプロジェクトにおいても、評価、測定、可観測性（オブザーバビリティ）の仕組みを組み込んでいます。「答えを出したこと」と「正しい答えを出したこと」は別物だからです。本番環境で障害が起きる前に、評価段階で問題を見つけ出すことを優先しています。`,
+  "about.p3":`2026年よりハル大学（University of Hull）にて人工知能（AI）の修士課程を開始する予定です。また、自身の業務でも日常的にAIツール（Claude、Cursor、Copilot）を活用しています。英国籍で英国在住です。リモートおよびハイブリッド勤務のほか、海外への転居も可能です。`,
+  "sk.h1":`エージェンティックAI & LLM`,
+  "sk.h2":`データ & 検索（リトリーバル）`,
+  "sk.h3":`エンジニアリング`,
+  "contact.h":`ご連絡はこちら`,
+  "contact.p":`AIエンジニア、応用AI、エージェンティックAI関連のポジションを募集中です（リモートまたはハイブリッド）。`,
+  "contact.email":`メールを送信`,
+  "contact.gmail":`Gmailで開く`,
+  "contact.copy":`アドレスをコピー`,
+  "contact.copied":`コピーしました ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · 仕組みがひと目でわかる設計 — コードそのものがすべてを物語ります。`
+},
+
+th: {
+  "nav.projects":`โปรเจกต์`,
+  "nav.about":`เกี่ยวกับผม`,
+  "nav.contact":`ติดต่อ`,
+  "hero.eyebrow":`วิศวกร AI · ระบบ Agentic และ RAG`,
+  "hero.h1":`ผมสร้าง<em>ระบบ AI</em> ที่ใช้งานได้จริง และวัดผลได้ว่ามันทำงานได้ผลลัพธ์ตามที่คาดหวังหรือไม่`,
+  "hero.lede":`พัฒนา Agentic AI, Retrieval-Augmented Generation (RAG) และระบบอัตโนมัติที่ขับเคลื่อนด้วย LLM โดยใช้ภาษา Python นำประสบการณ์ด้านข้อมูลกว่า 4 ปีจากธุรกิจประกันภัยที่มีกฎระเบียบควบคุมเข้มงวด มาประยุกต์ใช้ในการสร้างเครื่องมือ AI เพื่อแก้ปัญหาทางธุรกิจอย่างแท้จริง`,
+  "hero.plain":`อธิบายง่ายๆ คือ ผมสร้างซอฟต์แวร์ที่ใช้ AI เพื่อตอบคำถาม ทำงานซ้ำๆ แทนมนุษย์ และช่วยตัดสินใจ ซึ่งเป็นเครื่องมือที่ธุรกิจใช้เพื่อประหยัดเวลาและลดต้นทุน โปรเจกต์ทั้งหมดด้านล่างนี้มีลิงก์ไปยังโค้ดที่ใช้งานได้จริง`,
+  "hero.cta1":`ดู GitHub ของผม →`,
+  "hero.cta2":`ดูโปรเจกต์ต่างๆ`,
+  "proj.head":`โปรเจกต์ที่คัดสรรมา`,
+  "proj.count":`6 โปรเจกต์ · ทุกโปรเจกต์มีโค้ดที่ใช้งานได้จริง`,
+  "proj.sub":`การ์ดแต่ละใบจะอธิบายรายละเอียดโปรเจกต์ การใช้งานจริง และการนำไปปรับใช้ในอุตสาหกรรม พร้อมลิงก์ไปยังโค้ด โดยไม่จำเป็นต้องมีความรู้ด้านเทคนิคมาก่อน`,
+  "lab.what":`มันคืออะไร`,
+  "lab.use":`ใช้ทำอะไร`,
+  "lab.stand":`จุดเด่น`,
+  "lab.where":`ขอบเขตการใช้งาน`,
+  "cta.code":`ดูโค้ด →`,
+  "cta.code2":`ดูเซิร์ฟเวอร์เครื่องมือ →`,
+  "p1.tag":`RAG · การดึงข้อมูลและการค้นหา`,
+  "p1.h":`ระบบถาม-ตอบอัจฉริยะสำหรับเอกสาร`,
+  "p1.what":`ระบบ AI ที่ตอบคำถามเกี่ยวกับเอกสาร โดยเริ่มจากการค้นหาข้อความที่เกี่ยวข้อง แล้วจึงเรียบเรียงคำตอบที่อ้างอิงจากข้อมูลจริง อีกทั้งยังสามารถตัดสินใจเองได้ว่าจะค้นหาข้อมูลจากเอกสาร ค้นหาจากเว็บ หรือตอบคำถามโดยตรง`,
+  "p1.use":`ช่วยให้ผู้ใช้งานสามารถถามคำถามด้วยภาษาทั่วไปเกี่ยวกับเอกสารขนาดใหญ่ (เช่น รายงาน สัญญา หรือคู่มือ) และได้รับคำตอบที่แม่นยำพร้อมระบุแหล่งที่มา โดยไม่จำเป็นต้องอ่านเอกสารทั้งฉบับ`,
+  "p1.stand":`ผมไม่ได้แค่สร้างมันขึ้นมาเท่านั้น แต่ยังมีการวัดผลประสิทธิภาพการทำงานด้วย จากการประเมินด้วยเครื่องมือมาตรฐานในอุตสาหกรรม (RAGAS) คำตอบที่ได้มีคะแนนความถูกต้องแม่นยำตามแหล่งข้อมูล (Faithfulness) สูงถึง 97%`,
+  "p1.metric":`✓ ความถูกต้องตามแหล่งข้อมูล 0.97 · ความแม่นยำ 0.92`,
+  "p1.where":`<strong>ประกันภัยและการเงิน:</strong> ข้อความในกรมธรรม์, เอกสารการเคลม, คู่มือระเบียบข้อบังคับ <strong>เภสัชกรรมและการแพทย์:</strong> โปรโตคอลการทดลองทางคลินิก, ข้อมูลยา (monographs) และแนวทางปฏิบัติทางคลินิก (โดยใช้เป็นเครื่องมือช่วยวิจัยและมีผู้เชี่ยวชาญตรวจสอบทุกคำตอบ) <strong>ภาครัฐและความมั่นคง:</strong> กฎหมาย, เอกสารการจัดซื้อจัดจ้าง, คู่มือทางเทคนิค <strong>สิ่งแวดล้อม:</strong> รายงานทางวิทยาศาสตร์และรายงานผลกระทบที่มีเนื้อหายาว เนื่องจากคำตอบได้รับการประเมินความถูกต้องตามแหล่งข้อมูล จึงเหมาะสำหรับงานในภาคส่วนที่มีกฎระเบียบควบคุมเข้มงวด ซึ่งคำตอบที่ไม่มีข้อมูลอ้างอิงรองรับอาจก่อให้เกิดความเสี่ยงที่แท้จริง`,
+  "p2.tag":`เครื่องมือสำหรับ Agent · การเชื่อมต่อระบบ (Integration)`,
+  "p2.h":`Agent สำหรับการวิจัยตลาด`,
+  "p2.what":`ผู้ช่วยวิจัยผ่านระบบแชทที่เรียกใช้งานเครื่องมือแบบเรียลไทม์ เช่น การค้นหาข้อมูลบนเว็บ, การวิเคราะห์คู่แข่ง, ข้อมูลราคา และข่าวสาร ผ่านเซิร์ฟเวอร์เครื่องมือที่พัฒนาขึ้นเอง จากนั้นจะนำผลลัพธ์ที่ได้มาเรียบเรียงและแสดงผลในบทสนทนา`,
+  "p2.use":`เปลี่ยนงานวิจัยที่ต้องทำด้วยมือและใช้เวลานาน ให้กลายเป็นงานที่ผู้ไม่มีทักษะด้านเทคนิคสามารถทำได้ง่ายๆ เพียงแค่พิมพ์ถามในหน้าต่างแชท โดย AI จะทำหน้าที่ดึงข้อมูลและจัดระเบียบข้อมูลเหล่านั้นให้`,
+  "p2.stand":`เซิร์ฟเวอร์เครื่องมือนี้ถูกบรรจุในรูปแบบ Docker ทำให้สามารถทำงานได้เหมือนกันทุกประการบนทุกเครื่อง ซึ่งถือเป็นก้าวสำคัญสู่การใช้งานจริง (Production-ready) ไม่ใช่แค่เพียงตัวอย่างสาธิต (Demo)`,
+  "p2.metric":`✓ บรรจุใน Container และพร้อมใช้งาน`,
+  "p2.where":`<strong>การเงินและประกันภัย:</strong> การติดตามคู่แข่ง, การตรวจสอบสถานะ (Due Diligence) ของซัพพลายเออร์และคู่สัญญา <strong>เภสัชกรรม:</strong> การติดตามแผนการพัฒนายาของคู่แข่งและการประกาศจากหน่วยงานกำกับดูแล <strong>ภาครัฐและความมั่นคง:</strong> การรวบรวมข้อมูลจากแหล่งข้อมูลสาธารณะ (Open-source) <strong>สิ่งแวดล้อม:</strong> การติดตามข้อมูลที่เผยแพร่เกี่ยวกับการปล่อยมลพิษ, เหตุการณ์ต่างๆ และการเปลี่ยนแปลงนโยบาย เหมาะสำหรับทุกทีมงานที่ปัจจุบันต้องจ้างคนมาอ่านข้อมูลบนอินเทอร์เน็ตและสรุปผล`,
+  "p3.tag":`ระบบ Multi-Agent · การประสานการทำงาน (Orchestration)`,
+  "p3.h":`ระบบวางแผนกลยุทธ์การเข้าสู่ตลาด (Go-to-Market Strategy)`,
+  "p3.what":`ทีม AI Agent 4 ตัว (ได้แก่ ผู้วางแผน, นักค้นคว้าข้อมูล, นักวิเคราะห์ และนักวางกลยุทธ์) ทำงานประสานกันตามลำดับขั้นตอนเพื่อจัดทำกลยุทธ์การเข้าสู่ตลาด โดยมีการสร้างระบบด้วยแนวทางที่แตกต่างกัน 2 รูปแบบเพื่อให้สามารถเปรียบเทียบวิธีการทำงานได้โดยตรง`,
+  "p3.use":`เปลี่ยนงานวิเคราะห์ทางธุรกิจที่ปกติแล้วต้องใช้ทีมงานจำนวนมากให้เป็นระบบอัตโนมัติ โดยยังคงรักษาความสามารถในการตรวจสอบย้อนกลับข้อมูลอ้างอิงของทุกข้อสรุปได้`,
+  "p3.stand":`ข้อเท็จจริงทุกอย่างที่ Agent นำมาใช้จะมีการระบุแหล่งที่มาไว้อย่างชัดเจน และกระบวนการทำงานทั้งหมดจะได้รับการประเมินคุณภาพ ทำให้ผลลัพธ์ที่ได้สามารถตรวจสอบที่มาที่ไปได้ ไม่ใช่กระบวนการทำงานแบบกล่องดำ (Black Box) ที่ไม่สามารถตรวจสอบได้`,
+  "p3.where":`<strong>เภสัชกรรม:</strong> การวางแผนเข้าสู่ตลาดสำหรับผลิตภัณฑ์หรือพื้นที่ใหม่ <strong>การเงินและการประกันภัย:</strong> การเปิดตัวผลิตภัณฑ์ การกำหนดราคา และการวิจัยคู่แข่ง <strong>ภาครัฐ:</strong> การประเมินทางเลือกเชิงนโยบาย โดยข้อเสนอแนะแต่ละข้อต้องมีหลักฐานอ้างอิงที่ตรวจสอบย้อนกลับได้ <strong>การวิจัย:</strong> การทบทวนหลักฐานอย่างเป็นระบบซึ่งระบุแหล่งที่มาของข้อมูลในทุกประเด็นที่กล่าวอ้าง หัวใจสำคัญคือ ร่องรอยการตรวจสอบ (audit trail) ซึ่งออกแบบมาสำหรับสถานการณ์ที่จำเป็นต้องแสดงที่มาที่ไปของกระบวนการทำงาน`,
+  "p4.tag":`ระบบ Multi-Agent · ระบบอัตโนมัติ (Automation)`,
+  "p4.h":`ทีมคัดกรองและจัดลำดับความสำคัญของคำร้องขอรับบริการ`,
+  "p4.what":`กลุ่ม AI agent ที่หารือกันเองเกี่ยวกับคำร้องขอรับบริการ (tickets) ที่เข้ามา และร่วมกันตัดสินใจว่าจะให้ความสำคัญกับรายการใดก่อน`,
+  "p4.use":`ช่วยทีมงานรับมือกับปริมาณคำร้องขอจำนวนมาก โดยให้ AI ทำหน้าที่คัดแยกและจัดลำดับก่อน เพื่อให้บุคลากรสามารถมุ่งเน้นไปที่เรื่องที่มีความสำคัญสูงสุดได้`,
+  "p4.stand":`Agent ต่างๆ ทำงานประสานกันเอง (แบบ agent-to-agent) แทนที่จะให้ AI เพียงตัวเดียวเป็นผู้ตัดสินใจในทุกขั้นตอน`,
+  "p4.where":`<strong>ประกันภัย:</strong> การรับแจ้งเหตุความเสียหายและการคัดกรองคำร้องสินไหม รวมถึงการจัดเส้นทางและจัดลำดับความสำคัญของคำร้องที่เข้ามา <strong>การแพทย์:</strong> การคัดแยกข้อซักถามของผู้ป่วยและคำร้องด้านธุรการ เพื่อให้บุคลากรทางการแพทย์เห็นเคสเร่งด่วนก่อน (เป็นการจัดลำดับเท่านั้น ไม่ใช่การตัดสินใจทางการแพทย์) <strong>ภาครัฐ:</strong> คำร้องขอรับบริการของประชาชน <strong>การป้องกันประเทศและสิ่งแวดล้อม:</strong> การจัดลำดับความสำคัญของรายงานเหตุการณ์และความผิดปกติตามระดับความรุนแรง รวมถึงคิวงานที่มีปริมาณมากและมีความเสี่ยงสูงหากมองข้ามรายการที่เร่งด่วนไป`,
+  "p5.tag":`ระบบ Multi-Agent · หน่วยความจำ (Memory)`,
+  "p5.h":`ระบบวางแผนสำหรับโครงการบ่มเพาะธุรกิจสตาร์ทอัพ`,
+  "p5.what":`ชุดของ AI agent (เช่น ฝ่ายวิจัย, ฝ่ายจัดหาเงินทุน, โค้ชสำหรับการนำเสนอแผนธุรกิจ, และฝ่ายวิพากษ์) ที่ร่วมกันวางแผนขั้นตอนต่อไปขององค์กร โดยใช้หน่วยความจำร่วมกันและปรับปรุงผลลัพธ์การทำงานผ่านกระบวนการทบทวนและปรับแก้ซ้ำ`,
+  "p5.use":`การจัดทำร่างแผนงานเบื้องต้น (เช่น การวิจัยตลาด, ทางเลือกด้านเงินทุน และโครงร่างการนำเสนอแผนธุรกิจ) เพื่อให้มนุษย์นำไปปรับแก้ต่อ แทนที่จะต้องเริ่มต้นเขียนแผนใหม่ทั้งหมดตั้งแต่ต้น`,
+  "p5.stand":`โดยค่าเริ่มต้น ระบบทำงานโดยไม่พึ่งพาบริการ AI แบบเสียค่าใช้จ่าย (มีโหมดทำงานแบบออฟไลน์ในตัว) จึงสามารถสาธิตการใช้งานได้ฟรี และมี agent ทำหน้าที่วิพากษ์ตรวจสอบผลงานก่อนที่จะสรุปเป็นแผนงานฉบับสมบูรณ์`,
+  "p5.where":`<strong>ภาครัฐและหน่วยงานสาธารณะ:</strong> การร่างข้อเสนอขอรับทุนสนับสนุนและทุนด้านนวัตกรรม <strong>ด้านสิ่งแวดล้อม:</strong> การวางแผนและประเมินต้นทุนสำหรับโครงการด้านความยั่งยืน <strong>ด้านเภสัชกรรมและการแพทย์:</strong> การวางแผนแยกธุรกิจ (spin-out) และการนำผลงานวิจัยระยะเริ่มต้นไปสู่การใช้งานจริง <strong>ด้านการเงิน:</strong> การคัดกรองการลงทุน โดยมี AI agent ทำหน้าที่วิพากษ์และทดสอบความแข็งแกร่งของแผนงาน (stress-test) ก่อนที่มนุษย์จะเข้ามาตรวจสอบ นอกจากนี้ โหมดออฟไลน์ยังเหมาะสำหรับองค์กรที่ไม่สามารถส่งข้อมูลไปยังบริการ AI ภายนอกได้`,
+  "p6.tag":`โครงสร้างพื้นฐานสำหรับ Agent · รูปแบบ Container`,
+  "p6.h":`เซิร์ฟเวอร์เครื่องมือด้านข้อมูลเชิงลึกทางการตลาด`,
+  "p6.what":`เซิร์ฟเวอร์เครื่องมือที่ช่วยให้ AI agent สามารถเข้าถึงข้อมูลแบบเรียลไทม์ได้ ไม่ว่าจะเป็นภาพรวมบริษัท รายชื่อคู่แข่ง กลุ่มผลิตภัณฑ์ ข้อมูลราคาล่าสุด และกระแสข่าวสาร โดยใช้ MCP ซึ่งเป็นมาตรฐานเปิดใหม่สำหรับการเชื่อมต่อ AI เข้ากับระบบภายนอก`,
+  "p6.use":`ช่วยให้ผู้ช่วย AI สามารถเข้าถึงข้อมูลจริงที่เป็นปัจจุบันจากภายนอกได้ แทนที่จะพึ่งพาเพียงแค่สิ่งที่เรียนรู้มาในระหว่างการฝึกสอน (training) เท่านั้น`,
+  "p6.stand":`มาพร้อมกับ Docker และพร้อมใช้งานได้จริง โดย container จะให้บริการเครื่องมือผ่านเครือข่าย และมีการใส่ข้อมูลยืนยันตัวตน (credentials) ในขณะรันโปรแกรม แทนที่จะเขียนฝังลงไปในโค้ดโดยตรง`,
+  "p6.metric":`✓ Docker · FastMCP · เครื่องมือแบบเรียลไทม์ 5 รายการ`,
+  "p6.where":`<strong>การเงินและประกันภัย:</strong> การตรวจสอบสถานะกิจการ (due diligence) และการติดตามคู่แข่ง <strong>เภสัชกรรม:</strong> การติดตามสถานะโครงการพัฒนายา (pipeline) และกฎระเบียบข้อบังคับ <strong>ภาครัฐและการป้องกันประเทศ:</strong> การรวบรวมข้อมูลจากแหล่งเปิด (open-source) <strong>สิ่งแวดล้อม:</strong> การติดตามข้อมูลที่มีการเผยแพร่ รูปแบบการทำงานนี้มีความสำคัญยิ่งกว่าตัวเครื่องมือเฉพาะเหล่านี้ เพราะระบบภายในองค์กรใดๆ ก็สามารถเชื่อมต่อกับ AI agent ด้วยวิธีนี้ได้ ซึ่งถือเป็นแนวทางที่องค์กรส่วนใหญ่จะใช้ในการเชื่อมต่อ AI เข้ากับข้อมูลของตนเอง`,
+  "about.h":`เกี่ยวกับผม`,
+  "about.p1":`ผมเป็นวิศวกร AI ที่เชี่ยวชาญด้านระบบ Agent (agentic systems) โดยทำหน้าที่สร้างและประเมินผล AI agent ที่ขับเคลื่อนด้วย LLM, ระบบ RAG (Retrieval-Augmented Generation) และระบบอัตโนมัติด้วยภาษา Python สิ่งที่ทำให้งานของผมแตกต่างคือประสบการณ์ที่ผ่านมา: ผมเคยทำงานเป็นเวลา 4 ปีในบริษัทประกันภัยที่อยู่ภายใต้การกำกับดูแล (FCA) โดยลงมือจัดการข้อมูลการเรียกร้องสินไหมและข้อมูลความเสี่ยงด้วย SQL และ Python นั่นหมายความว่าผมสร้าง AI เพื่อแก้ปัญหาทางธุรกิจที่เกิดขึ้นจริง ทั้งในเรื่องต้นทุน ความแม่นยำ และความสามารถในการตรวจสอบได้ (auditability) ไม่ใช่แค่การสร้างตัวอย่างสาธิต (demo) เท่านั้น`,
+  "about.p2":`ผมให้ความสำคัญกับประสิทธิภาพและการใช้งานได้จริงของระบบ ในทุกโปรเจกต์ที่ผมทำ ผมจะผนวกกระบวนการประเมินผล การวัดผล และระบบตรวจสอบการทำงาน (observability) เข้าไปด้วยเสมอ เพราะ การได้คำตอบ กับ การได้คำตอบที่ถูกต้อง นั้นเป็นคนละเรื่องกัน ผมยอมที่จะพบข้อผิดพลาดในขั้นตอนการประเมินผลมากกว่าที่จะไปเจอเมื่อระบบใช้งานจริง (production)`,
+  "about.p3":`ผมกำลังจะเริ่มศึกษาต่อระดับปริญญาโทสาขาปัญญาประดิษฐ์ (Artificial Intelligence) ที่ University of Hull ในปี 2026 และใช้งานเครื่องมือ AI ต่างๆ (เช่น Claude, Cursor, Copilot) ในการทำงานประจำวันอยู่เสมอ ผมถือสัญชาติอังกฤษและพำนักอยู่ในสหราชอาณาจักร เปิดรับงานทั้งแบบ Remote และ Hybrid และพร้อมย้ายไปทำงานต่างประเทศ`,
+  "sk.h1":`Agentic AI และ LLMs`,
+  "sk.h2":`ข้อมูลและการดึงข้อมูล (Data & Retrieval)`,
+  "sk.h3":`วิศวกรรมซอฟต์แวร์`,
+  "contact.h":`พูดคุยกันได้`,
+  "contact.p":`เปิดรับโอกาสในตำแหน่ง AI Engineer, Applied AI และ Agentic AI ทั้งรูปแบบ Remote และ Hybrid`,
+  "contact.email":`ส่งอีเมลหาผม`,
+  "contact.gmail":`เปิดใน Gmail`,
+  "contact.copy":`คัดลอกที่อยู่`,
+  "contact.copied":`คัดลอกแล้ว ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · สร้างสรรค์ขึ้นเพื่อให้เข้าใจการทำงานได้ง่าย — ให้โค้ดเป็นตัวอธิบายผลลัพธ์ด้วยตัวมันเอง`
+},
+
+vi: {
+  "nav.projects":`Dự án`,
+  "nav.about":`Giới thiệu`,
+  "nav.contact":`Liên hệ`,
+  "hero.eyebrow":`Kỹ sư AI · Hệ thống AI tự hành (Agentic Systems) & RAG`,
+  "hero.h1":`Tôi xây dựng các <em>hệ thống AI</em> giải quyết công việc thực tế — và tôi đo lường hiệu quả thực sự của chúng.`,
+  "hero.lede":`AI tự hành (Agentic AI), RAG (tạo nội dung có tham chiếu dữ liệu), và tự động hóa dựa trên LLM, được phát triển bằng Python. Bốn năm kinh nghiệm làm việc với dữ liệu tại một công ty bảo hiểm chịu sự quản lý chặt chẽ, nay được áp dụng để xây dựng các công cụ AI giải quyết vấn đề kinh doanh thực tế.`,
+  "hero.plain":`Nói một cách đơn giản: Tôi xây dựng phần mềm sử dụng AI để giải đáp thắc mắc, tự động hóa các công việc lặp đi lặp lại và đưa ra quyết định — những công cụ giúp doanh nghiệp tiết kiệm thời gian và cắt giảm chi phí. Mỗi dự án dưới đây đều có liên kết dẫn đến mã nguồn hoạt động thực tế.`,
+  "hero.cta1":`Xem GitHub của tôi →`,
+  "hero.cta2":`Xem các dự án`,
+  "proj.head":`Các dự án tiêu biểu`,
+  "proj.count":`6 dự án · tất cả đều có mã nguồn hoạt động`,
+  "proj.sub":`Mỗi thẻ dự án giải thích về dự án, công dụng, phạm vi ứng dụng trong ngành và cung cấp liên kết đến mã nguồn. Không yêu cầu kiến thức chuyên môn kỹ thuật.`,
+  "lab.what":`Mô tả`,
+  "lab.use":`Công dụng`,
+  "lab.stand":`Điểm nổi bật`,
+  "lab.where":`Các lĩnh vực ứng dụng`,
+  "cta.code":`Xem mã nguồn →`,
+  "cta.code2":`Xem máy chủ công cụ →`,
+  "p1.tag":`RAG · Truy xuất & Tìm kiếm`,
+  "p1.h":`Hệ thống Hỏi-Đáp Tài liệu Thông minh`,
+  "p1.what":`Một hệ thống AI giải đáp thắc mắc về tài liệu bằng cách trước tiên tìm kiếm các đoạn văn bản phù hợp, sau đó viết câu trả lời có cơ sở dữ liệu — đồng thời hệ thống tự quyết định xem nên tìm kiếm trong tài liệu, tìm kiếm trên web hay trả lời trực tiếp.`,
+  "p1.use":`Cho phép người dùng đặt câu hỏi bằng ngôn ngữ tự nhiên về một tài liệu lớn (báo cáo, hợp đồng hoặc hướng dẫn sử dụng) và nhận được câu trả lời chính xác, có trích dẫn nguồn, thay vì phải đọc toàn bộ tài liệu.`,
+  "p1.stand":`Tôi không chỉ xây dựng hệ thống này — tôi còn đo lường hiệu quả của nó. Khi sử dụng công cụ đánh giá trong ngành (RAGAS), các câu trả lời đạt điểm số 97% về độ trung thực (bám sát nội dung nguồn).`,
+  "p1.metric":`✓ Độ trung thực 0,97 · Độ chính xác 0,92`,
+  "p1.where":`<strong>Bảo hiểm & Tài chính:</strong> văn bản hợp đồng bảo hiểm, hồ sơ yêu cầu bồi thường, tài liệu quy định pháp lý. <strong>Dược phẩm & Y tế:</strong> quy trình thử nghiệm, chuyên luận thuốc và hướng dẫn lâm sàng (đóng vai trò hỗ trợ nghiên cứu với sự kiểm duyệt của chuyên gia cho từng câu trả lời). <strong>Chính phủ & Quốc phòng:</strong> văn bản luật, hồ sơ đấu thầu, tài liệu kỹ thuật. <strong>Môi trường:</strong> các báo cáo khoa học và báo cáo đánh giá tác động dài. Nhờ được chấm điểm dựa trên độ trung thực so với nguồn dữ liệu, công cụ này phù hợp với các môi trường chịu sự quản lý chặt chẽ, nơi những câu trả lời thiếu cơ sở xác thực có thể dẫn đến rủi ro thực tế.`,
+  "p2.tag":`Công cụ hỗ trợ (Agent Tools) · Tích hợp`,
+  "p2.h":`Tác nhân (Agent) Nghiên cứu Thị trường`,
+  "p2.what":`Một trợ lý nghiên cứu hoạt động qua giao diện trò chuyện (chat), có khả năng gọi các công cụ trực tuyến — như tìm kiếm web, phân tích đối thủ, dữ liệu giá cả và tin tức — thông qua một máy chủ công cụ tùy chỉnh do tôi xây dựng, sau đó tổng hợp kết quả và hiển thị lại ngay trong cuộc trò chuyện.`,
+  "p2.use":`Chuyển đổi quy trình nghiên cứu thủ công tốn thời gian thành tác vụ đơn giản mà người không có chuyên môn kỹ thuật cũng có thể thực hiện chỉ bằng cách đặt câu hỏi trong khung chat; AI sẽ đảm nhiệm việc tìm kiếm và cấu trúc hóa thông tin.`,
+  "p2.stand":`Máy chủ công cụ được đóng gói bằng Docker, đảm bảo khả năng vận hành đồng nhất trên mọi thiết bị — một bước tiến hướng tới giải pháp sẵn sàng triển khai thực tế (production-ready) thay vì chỉ dừng lại ở mức bản demo.`,
+  "p2.metric":`✓ Đã đóng gói (container hóa) & sẵn sàng vận hành`,
+  "p2.where":`<strong>Tài chính & Bảo hiểm:</strong> theo dõi đối thủ cạnh tranh, thẩm định nhà cung cấp và đối tác giao dịch. <strong>Dược phẩm:</strong> theo dõi lộ trình phát triển sản phẩm của đối thủ và các thông báo quy định công khai. <strong>Chính phủ & Quốc phòng:</strong> thu thập thông tin từ các nguồn công khai (OSINT). <strong>Môi trường:</strong> theo dõi dữ liệu đã công bố về khí thải, sự cố và thay đổi chính sách. Phù hợp với bất kỳ đội ngũ nào hiện đang thuê nhân sự để đọc và tóm tắt thông tin từ internet.`,
+  "p3.tag":`Đa tác nhân (Multi-Agent) · Điều phối`,
+  "p3.h":`Hệ thống Chiến lược Thâm nhập Thị trường`,
+  "p3.what":`Một nhóm gồm bốn tác nhân AI — chuyên gia lập kế hoạch, nghiên cứu, phân tích và hoạch định chiến lược — phối hợp làm việc theo quy trình để xây dựng chiến lược thâm nhập thị trường; quy trình này được thực hiện theo hai cách khác nhau để có thể so sánh trực tiếp các phương pháp tiếp cận.`,
+  "p3.use":`Tự động hóa một phần công việc phân tích kinh doanh vốn thường đòi hỏi cả một đội ngũ nhân sự, đồng thời đảm bảo mọi nhận định đều có thể truy xuất được nguồn gốc.`,
+  "p3.stand":`Mọi dữ kiện mà các tác nhân sử dụng đều được gắn nhãn nguồn gốc, và toàn bộ quá trình thực thi đều được đánh giá về chất lượng — nhờ đó, kết quả đầu ra có thể được kiểm chứng và minh bạch, thay vì là một "hộp đen" khó hiểu.`,
+  "p3.where":`<strong>Dược phẩm:</strong> lập kế hoạch gia nhập thị trường cho sản phẩm hoặc khu vực mới. <strong>Tài chính & Bảo hiểm:</strong> ra mắt sản phẩm, định giá và nghiên cứu đối thủ cạnh tranh. <strong>Chính phủ:</strong> thẩm định các phương án chính sách, trong đó mỗi khuyến nghị đều phải có bằng chứng xác thực đi kèm. <strong>Nghiên cứu:</strong> tổng hợp bằng chứng có cấu trúc, trong đó mọi nhận định đều dẫn rõ nguồn tham khảo. Điểm mấu chốt nằm ở khả năng truy xuất quy trình — hệ thống được thiết kế cho các môi trường đòi hỏi sự minh bạch trong cách thức thực hiện công việc.`,
+  "p4.tag":`Đa tác nhân (Multi-Agent) · Tự động hóa`,
+  "p4.h":`Nhóm Phân loại Yêu cầu Hỗ trợ`,
+  "p4.what":`Một nhóm các tác nhân AI cùng thảo luận về các yêu cầu hỗ trợ mới nhận được và thống nhất quyết định xem yêu cầu nào cần được ưu tiên xử lý trước.`,
+  "p4.use":`Hỗ trợ đội ngũ xử lý khối lượng yêu cầu khổng lồ bằng cách để AI phân loại và xếp hạng trước, giúp nhân viên tập trung vào những vấn đề quan trọng nhất.`,
+  "p4.stand":`Các tác nhân phối hợp với nhau (tương tác giữa các tác nhân) thay vì để một AI duy nhất tự đưa ra mọi quyết định.`,
+  "p4.where":`<strong>Bảo hiểm:</strong> tiếp nhận thông báo tổn thất ban đầu và phân loại, điều phối, xếp hạng các yêu cầu bồi thường. <strong>Y tế:</strong> phân loại thắc mắc của bệnh nhân và các yêu cầu hành chính để nhân viên y tế xem xét các vấn đề khẩn cấp trước — chỉ dừng lại ở mức xếp hạng, tuyệt đối không đưa ra quyết định chuyên môn y khoa. <strong>Chính phủ:</strong> các yêu cầu dịch vụ công từ người dân. <strong>Quốc phòng & Môi trường:</strong> báo cáo sự cố và lỗi được xếp hạng theo mức độ nghiêm trọng. Bất kỳ quy trình xử lý hàng loạt nào mà việc bỏ sót vấn đề khẩn cấp sẽ gây hậu quả lớn.`,
+  "p5.tag":`Đa tác nhân (Multi-Agent) · Bộ nhớ`,
+  "p5.h":`Công cụ Lập kế hoạch cho Chương trình Tăng tốc Khởi nghiệp`,
+  "p5.what":`Một nhóm các tác nhân AI (chuyên trách nghiên cứu, gọi vốn, huấn luyện thuyết trình, phản biện) cùng lập kế hoạch cho các bước tiếp theo của tổ chức, chia sẻ bộ nhớ chung và cải thiện kết quả đầu ra thông qua quy trình đánh giá và tinh chỉnh liên tục.`,
+  "p5.use":`Tạo bản thảo kế hoạch ban đầu — bao gồm nghiên cứu thị trường, các phương án gọi vốn và dàn ý thuyết trình — để con người tinh chỉnh lại thay vì phải bắt đầu từ con số không.`,
+  "p5.stand":`Hệ thống mặc định hoạt động mà không cần dịch vụ AI trả phí (có chế độ ngoại tuyến tích hợp), cho phép chạy thử nghiệm miễn phí; đồng thời, một tác nhân đóng vai trò phản biện sẽ kiểm tra kết quả công việc trước khi hoàn thiện.`,
+  "p5.where":`<strong>Chính phủ & khu vực công:</strong> soạn thảo hồ sơ xin tài trợ và cấp vốn cho đổi mới sáng tạo. <strong>Môi trường:</strong> lập kế hoạch và dự toán chi phí cho các sáng kiến bền vững. <strong>Dược phẩm & y tế:</strong> lập kế hoạch chuyển giao công nghệ và tách doanh nghiệp (spin-out) từ nghiên cứu giai đoạn đầu. <strong>Tài chính:</strong> sàng lọc đầu tư, trong đó tác nhân (agent) đóng vai trò phản biện để kiểm tra độ bền vững của phương án trước khi con người xem xét. Chế độ ngoại tuyến (offline) cũng phù hợp với các tổ chức không thể gửi dữ liệu ra bên ngoài cho dịch vụ AI.`,
+  "p6.tag":`Cơ sở hạ tầng Agent · Đóng gói dạng Container`,
+  "p6.h":`Máy chủ công cụ cung cấp thông tin thị trường`,
+  "p6.what":`Một máy chủ công cụ cung cấp cho bất kỳ tác nhân AI nào khả năng truy cập thông tin thời gian thực — bao gồm tổng quan công ty, danh sách đối thủ cạnh tranh, danh mục sản phẩm, thông tin giá cả và cập nhật tin tức mới nhất — thông qua việc sử dụng MCP, một tiêu chuẩn mở mới nổi dùng để kết nối AI với các hệ thống bên ngoài.`,
+  "p6.use":`Cho phép trợ lý AI tiếp cận thông tin thực tế và cập nhật từ bên ngoài, thay vì chỉ dựa vào những gì đã học được trong quá trình huấn luyện.`,
+  "p6.stand":`Giải pháp này được đóng gói bằng Docker và vận hành thực tế: container cung cấp các công cụ qua mạng, với thông tin xác thực được nạp vào khi chạy (runtime) thay vì bị mã hóa cứng (hard-coded) trong mã nguồn.`,
+  "p6.metric":`✓ Docker · FastMCP · 5 công cụ thời gian thực`,
+  "p6.where":`<strong>Tài chính & bảo hiểm:</strong> thẩm định chi tiết (due diligence) và theo dõi đối thủ cạnh tranh. <strong>Dược phẩm:</strong> theo dõi quy trình phát triển sản phẩm (pipeline) và các quy định pháp lý. <strong>Chính phủ & quốc phòng:</strong> thu thập thông tin từ nguồn mở. <strong>Môi trường:</strong> giám sát dữ liệu được công bố. Mô hình triển khai quan trọng hơn bản thân các công cụ cụ thể này — bất kỳ hệ thống nội bộ nào cũng có thể được kết nối với tác nhân AI theo cách này; đây chính là phương thức mà hầu hết các tổ chức sẽ sử dụng để kết nối AI với dữ liệu của chính họ.`,
+  "about.h":`Giới thiệu`,
+  "about.p1":`Tôi là kỹ sư AI chuyên về các hệ thống tác nhân (agentic systems) — tôi xây dựng và đánh giá các tác nhân vận hành bằng LLM, quy trình RAG và các giải pháp tự động hóa sử dụng Python. Điểm khác biệt trong công việc của tôi đến từ nền tảng kinh nghiệm: bốn năm làm việc tại một công ty bảo hiểm chịu sự quản lý chặt chẽ (của FCA), trực tiếp xử lý dữ liệu về yêu cầu bồi thường và rủi ro bằng SQL và Python. Điều đó có nghĩa là tôi xây dựng AI để giải quyết các vấn đề kinh doanh thực tế — như chi phí, độ chính xác và khả năng kiểm toán — chứ không chỉ dừng lại ở các bản demo.`,
+  "about.p2":`Tôi chú trọng vào tính hiệu quả thực tế của hệ thống. Trong các dự án của mình, tôi luôn tích hợp sẵn các quy trình đánh giá, đo lường và khả năng quan sát (observability), bởi vì việc "tạo ra kết quả" và "tạo ra kết quả chính xác" là hai chuyện hoàn toàn khác nhau. Tôi thà phát hiện lỗi trong giai đoạn đánh giá còn hơn là khi hệ thống đã đi vào vận hành thực tế.`,
+  "about.p3":`Tôi sẽ bắt đầu chương trình Thạc sĩ (MSc) về Trí tuệ Nhân tạo tại Đại học Hull vào năm 2026 và thường xuyên sử dụng các công cụ AI (như Claude, Cursor, Copilot) trong công việc hàng ngày. Tôi là công dân Anh, hiện sống tại Vương quốc Anh, sẵn sàng nhận công việc từ xa (remote) hoặc kết hợp (hybrid) và sẵn sàng chuyển ra nước ngoài làm việc.`,
+  "sk.h1":`Agentic AI & LLM`,
+  "sk.h2":`Dữ liệu & Truy xuất`,
+  "sk.h3":`Kỹ thuật`,
+  "contact.h":`Hãy cùng trao đổi`,
+  "contact.p":`Sẵn sàng nhận các vị trí Kỹ sư AI, AI Ứng dụng và Agentic AI — làm việc từ xa hoặc kết hợp.`,
+  "contact.email":`Gửi email cho tôi`,
+  "contact.gmail":`Mở trong Gmail`,
+  "contact.copy":`Sao chép địa chỉ`,
+  "contact.copied":`Đã sao chép ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · Được xây dựng để mọi thứ trở nên dễ hiểu — mã nguồn tự nói lên tất cả.`
+},
+
+de: {
+  "nav.projects":`Projekte`,
+  "nav.about":`Über mich`,
+  "nav.contact":`Kontakt`,
+  "hero.eyebrow":`KI-Ingenieur · Agentische Systeme & RAG`,
+  "hero.h1":`Ich entwickle <em>KI-Systeme</em>, die echte Arbeit leisten – und ich messe, ob sie tatsächlich funktionieren.`,
+  "hero.lede":`Agentische KI, Retrieval-Augmented Generation (RAG) und LLM-gestützte Automatisierung, entwickelt mit Python. Vier Jahre Erfahrung im Datenbereich eines regulierten Versicherungsunternehmens, die ich nun für die Entwicklung von KI-Tools zur Lösung realer geschäftlicher Probleme einsetze.`,
+  "hero.plain":`Einfach ausgedrückt: Ich entwickle Software, die KI nutzt, um Fragen zu beantworten, wiederkehrende Aufgaben zu automatisieren und Entscheidungen zu treffen – genau die Art von Tools, mit denen Unternehmen Zeit sparen und Kosten senken. Jedes der unten aufgeführten Projekte verlinkt auf den funktionierenden Code.`,
+  "hero.cta1":`Zu meinem GitHub →`,
+  "hero.cta2":`Zu den Projekten`,
+  "proj.head":`Ausgewählte Projekte`,
+  "proj.count":`6 Projekte · alle mit funktionierendem Code`,
+  "proj.sub":`Jede Karte erklärt das Projekt, seinen Verwendungszweck und den industriellen Einsatzbereich und verlinkt auf den Code. Kein technisches Vorwissen erforderlich.`,
+  "lab.what":`Was es ist`,
+  "lab.use":`Wofür es genutzt wird`,
+  "lab.stand":`Was es besonders macht`,
+  "lab.where":`Anwendungsbereiche`,
+  "cta.code":`Code ansehen →`,
+  "p1.tag":`RAG · Retrieval & Suche`,
+  "p1.h":`Intelligentes Frage-Antwort-System für Dokumente`,
+  "p1.what":`Ein KI-System, das Fragen zu einem Dokument beantwortet, indem es zunächst die relevanten Textstellen findet und dann eine fundierte Antwort formuliert – dabei entscheidet es selbstständig, ob es das Dokument durchsucht, das Web abfragt oder direkt antwortet.`,
+  "p1.use":`Es ermöglicht Nutzern, einfache Fragen zu umfangreichen Dokumenten (Berichte, Verträge, Handbücher) zu stellen und präzise, belegte Antworten zu erhalten, ohne das gesamte Dokument lesen zu müssen.`,
+  "p1.stand":`Ich habe es nicht nur entwickelt – ich habe seine Leistung auch gemessen. Mithilfe eines Branchen-Evaluierungstools (RAGAS) erreichten die Antworten eine Treue-Bewertung (Quellentreue) von 97 %.`,
+  "p1.metric":`✓ 0,97 Quellentreue · 0,92 Präzision`,
+  "p1.where":`<strong>Versicherungs- und Finanzwesen:</strong> Versicherungsbedingungen, Schadenakten, regulatorische Regelwerke. <strong>Pharma und Medizin:</strong> Studienprotokolle, Arzneimittelmonographien und klinische Leitlinien (als Recherchehilfe, wobei jede Antwort von einer qualifizierten Fachkraft geprüft wird). <strong>Behörden und Verteidigung:</strong> Gesetzgebung, Beschaffungsunterlagen, technische Handbücher. <strong>Umweltbereich:</strong> umfangreiche wissenschaftliche Berichte und Folgenabschätzungen. Da die Antworten nach ihrer Quellentreue bewertet werden, eignet sich das System besonders für regulierte Umgebungen, in denen eine unbelegte Antwort reale Risiken birgt.`,
+  "p2.tag":`Agenten-Tools · Integration`,
+  "p2.h":`Marktforschungs-Agent`,
+  "p2.what":`Ein Chat-basierter Recherche-Assistent, der über einen von mir entwickelten, benutzerdefinierten Tool-Server Live-Tools (Websuche, Wettbewerbsanalyse, Preisdaten, Nachrichten) abruft und die Ergebnisse anschließend in den Chat-Verlauf integriert.`,
+  "p2.use":`Verwandelt einen langsamen, manuellen Rechercheprozess in eine Aufgabe, die auch Personen ohne technische Vorkenntnisse erledigen können: Man stellt einfach eine Frage im Chat-Fenster, und die KI beschafft und strukturiert die entsprechenden Informationen.`,
+  "p2.stand":`Der Tool-Server ist als Docker-Container verpackt und läuft daher auf jedem System identisch – ein Schritt hin zur produktionsreifen Lösung, nicht nur eine bloße Demo.`,
+  "p2.metric":`✓ Containerisiert & sofort einsatzbereit`,
+  "p2.where":`<strong>Finanz- und Versicherungswesen:</strong> Wettbewerbsbeobachtung, Due-Diligence-Prüfung von Lieferanten und Geschäftspartnern. <strong>Pharmaindustrie:</strong> Überwachung der Produktpipelines von Wettbewerbern und behördlicher Bekanntmachungen. <strong>Behörden und Verteidigung:</strong> Beschaffung von Open-Source-Informationen aus öffentlichen Quellen. <strong>Umweltbereich:</strong> Überwachung veröffentlichter Daten zu Emissionen, Vorfällen und politischen Änderungen. Geeignet für jedes Team, das derzeit Personal für das Durchforsten und Zusammenfassen von Internetinhalten bezahlt.`,
+  "p3.tag":`Multi-Agenten-System · Orchestrierung`,
+  "p3.h":`System für Go-to-Market-Strategien`,
+  "p3.what":`Ein Team aus vier KI-Agenten – Planer, Rechercheur, Analyst und Stratege – arbeitet nacheinander an der Erstellung einer Markteintrittsstrategie; dabei werden zwei verschiedene Verfahren angewandt, um die Ansätze direkt miteinander vergleichen zu können.`,
+  "p3.use":`Automatisierung einer geschäftlichen Analyse, die normalerweise ein ganzes Team erfordern würde, wobei jede Aussage auf ihre Quelle zurückführbar bleibt.`,
+  "p3.stand":`Jede von den Agenten verwendete Information ist mit ihrer Herkunft gekennzeichnet, und der gesamte Prozess wird hinsichtlich der Qualität bewertet – das Ergebnis ist somit nachvollziehbar und keine „Black Box“.`,
+  "p3.where":`<strong>Pharma:</strong> Planung des Markteintritts für ein neues Produkt oder eine neue Region. <strong>Finanz- und Versicherungswesen:</strong> Produkteinführung, Preisgestaltung und Wettbewerbsanalyse. <strong>Öffentliche Verwaltung:</strong> Bewertung politischer Handlungsoptionen, wobei jede Empfehlung auf Belegen basieren muss. <strong>Forschung:</strong> Strukturierte Auswertung von Belegen, bei der jede Aussage mit ihrer Quelle verknüpft ist. Entscheidend ist die Nachvollziehbarkeit (Audit Trail) – das System ist für Szenarien konzipiert, in denen der Arbeitsprozess offengelegt werden muss.`,
+  "p4.tag":`Multi-Agenten-System · Automatisierung`,
+  "p4.h":`Team zur Triage von Support-Tickets`,
+  "p4.what":`Eine Gruppe von KI-Agenten, die eingehende Support-Tickets untereinander diskutieren und gemeinsam entscheiden, welche davon priorisiert werden sollen.`,
+  "p4.use":`Unterstützung eines Teams bei der Bewältigung einer Flut von Anfragen: Die KI sortiert und priorisiert diese vorab, sodass sich die Mitarbeiter auf das Wesentliche konzentrieren können.`,
+  "p4.stand":`Die Agenten stimmen sich untereinander ab (Agent-zu-Agent-Kommunikation), anstatt dass eine einzelne KI alle Entscheidungen allein trifft.`,
+  "p4.where":`<strong>Versicherungswesen:</strong> Erstmeldung von Schäden und Triage von Schadensfällen; Weiterleitung und Priorisierung eingehender Schadensmeldungen. <strong>Gesundheitswesen:</strong> Sortierung von Patientenanfragen und administrativen Anliegen, damit das medizinische Personal dringende Fälle zuerst sieht – nur Priorisierung, niemals eine klinische Entscheidung. <strong>Öffentliche Verwaltung:</strong> Bürgeranfragen. <strong>Verteidigung und Umwelt:</strong> Meldung von Vorfällen und Störungen, priorisiert nach Schweregrad. Überall dort, wo große Mengen an Anfragen eingehen und das Übersehen eines dringenden Falls hohe Kosten verursacht.`,
+  "p5.tag":`Multi-Agenten-System · Gedächtnis`,
+  "p5.h":`Planungs-Tool für Startup-Acceleratoren`,
+  "p5.what":`Eine Gruppe von KI-Agenten (Recherche, Finanzierung, Pitch-Coach, Kritiker), die die nächsten Schritte einer Organisation planen, auf ein gemeinsames Gedächtnis zugreifen und ihre Ergebnisse durch eine Feedback- und Optimierungsschleife verbessern.`,
+  "p5.use":`Erstellung eines ersten Planentwurfs – einschließlich Marktforschung, Finanzierungsoptionen und Pitch-Gliederung –, den ein Mensch anschließend verfeinert, anstatt bei Null anfangen zu müssen.`,
+  "p5.stand":`Das System läuft standardmäßig ohne kostenpflichtige KI-Dienste (integrierter Offline-Modus) und kann daher kostenlos demonstriert werden; zudem überprüft ein „Kritiker-Agent“ die Ergebnisse, bevor sie finalisiert werden.`,
+  "p5.where":`<strong>Behörden & öffentlicher Sektor:</strong> Erstellung von Anträgen für Fördermittel und Innovationsfinanzierungen. <strong>Umwelt:</strong> Planung und Kostenkalkulation von Nachhaltigkeitsinitiativen. <strong>Pharma & Medizin:</strong> Planung von Ausgründungen (Spin-outs) und Translation in der frühen Forschungsphase. <strong>Finanzwesen:</strong> Investitionsprüfung (Screening), bei der ein „kritischer Agent“ das Szenario einem Stresstest unterzieht, bevor es von einem Menschen geprüft wird. Der Offline-Modus eignet sich zudem für Organisationen, die keine Daten an externe KI-Dienste übermitteln dürfen.`,
+  "p6.tag":`Agenten-Infrastruktur · Container-basiert`,
+  "p6.h":`Market-Intelligence-Tool-Server`,
+  "p6.what":`Ein Tool-Server, der jedem KI-Agenten Echtzeit-Funktionen verleiht – Unternehmensüberblick, Wettbewerberliste, Produktportfolio, Preisübersicht und aktuelle Nachrichtenlage. Dies geschieht mittels MCP, dem aufstrebenden offenen Standard zur Anbindung von KI an externe Systeme.`,
+  "p6.use":`Ermöglicht einem KI-Assistenten den Zugriff auf echte, aktuelle Informationen aus externen Quellen, anstatt sich nur auf das während des Trainings Gelernte zu verlassen.`,
+  "p6.stand":`Die Lösung ist als Docker-Container verpackt und sofort einsatzbereit: Der Container stellt die Tools über das Netzwerk bereit, wobei Zugangsdaten zur Laufzeit injiziert und nicht fest in den Code geschrieben werden.`,
+  "p6.metric":`✓ Docker · FastMCP · 5 Live-Tools`,
+  "p6.where":`<strong>Finanz- & Versicherungswesen:</strong> Due-Diligence-Prüfungen und Wettbewerberbeobachtung. <strong>Pharma:</strong> Überwachung von Produktpipelines und regulatorischen Anforderungen. <strong>Behörden & Verteidigung:</strong> Beschaffung von Open-Source-Informationen. <strong>Umwelt:</strong> Überwachung veröffentlichter Daten. Entscheidend ist weniger das spezifische Tool als vielmehr das zugrundeliegende Muster: Auf diese Weise lässt sich jedes interne System für einen KI-Agenten zugänglich machen – so werden die meisten Organisationen KI mit ihren eigenen Daten verknüpfen.`,
+  "about.h":`Über mich`,
+  "about.p1":`Ich bin KI-Ingenieur mit Schwerpunkt auf agentenbasierten Systemen (Agentic Systems); ich entwickle und evaluiere LLM-gestützte Agenten, RAG-Pipelines und Automatisierungslösungen in Python. Was meine Arbeit besonders macht, ist mein Hintergrund: Ich war vier Jahre lang bei einem regulierten (FCA) Versicherungsunternehmen tätig und habe dort direkt mit Schaden- und Risikodaten unter Verwendung von SQL und Python gearbeitet. Das bedeutet: Ich entwickle KI-Lösungen für reale geschäftliche Herausforderungen – unter Berücksichtigung von Kosten, Genauigkeit und Revisionssicherheit – und nicht bloß für Demonstrationszwecke.`,
+  "about.p2":`Mir ist wichtig, dass Dinge tatsächlich funktionieren. In meine Projekte integriere ich stets Evaluierung, Messung und Observability, denn es ist ein Unterschied, ob ein System „irgendeine Antwort“ liefert oder „die richtige Antwort“. Fehler entdecke ich lieber während der Evaluierung als im Produktivbetrieb.`,
+  "about.p3":`Ab 2026 absolviere ich einen MSc-Studiengang in Künstlicher Intelligenz an der University of Hull; zudem nutze ich täglich KI-Tools (Claude, Cursor, Copilot) bei meiner eigenen Arbeit. Ich bin britischer Staatsbürger mit Wohnsitz im Vereinigten Königreich, offen für Remote- und Hybrid-Positionen und zu einem Umzug ins Ausland bereit.`,
+  "sk.h1":`Agentic AI & LLMs`,
+  "sk.h2":`Daten & Retrieval`,
+  "sk.h3":`Engineering`,
+  "contact.h":`Lassen Sie uns sprechen`,
+  "contact.p":`Offen für Positionen als AI Engineer, im Bereich Applied AI oder Agentic AI – remote oder hybrid.`,
+  "contact.email":`E-Mail senden`,
+  "contact.gmail":`In Gmail öffnen`,
+  "contact.copy":`Adresse kopieren`,
+  "contact.copied":`Kopiert ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · Entwickelt für maximale Verständlichkeit – der Code spricht für sich.`
+},
+
+fr: {
+  "nav.projects":`Projets`,
+  "nav.about":`À propos`,
+  "nav.contact":`Contact`,
+  "hero.eyebrow":`Ingénieur IA · Systèmes agents & RAG`,
+  "hero.h1":`Je conçois des <em>systèmes d'IA</em> qui accomplissent de véritables tâches — et je mesure leur efficacité réelle.`,
+  "hero.lede":`IA de type « agent » (agentic AI), génération augmentée par récupération (RAG) et automatisation basée sur les LLM, le tout développé en Python. Quatre années d'expérience dans la donnée au sein d'une compagnie d'assurance réglementée, désormais mises au service de la création d'outils IA pour répondre à des enjeux métier concrets.`,
+  "hero.plain":`En termes simples : je développe des logiciels qui utilisent l'IA pour répondre à des questions, automatiser des tâches répétitives et prendre des décisions — le type d'outils qu'une entreprise utilise pour gagner du temps et réduire ses coûts. Chaque projet ci-dessous renvoie vers le code fonctionnel.`,
+  "hero.cta1":`Voir mon GitHub →`,
+  "hero.cta2":`Voir les projets`,
+  "proj.head":`Sélection de projets`,
+  "proj.count":`6 réalisations · toutes avec code fonctionnel`,
+  "proj.sub":`Chaque fiche présente le projet, son utilité, son application dans le secteur industriel et un lien vers le code. Aucune expertise technique n'est requise.`,
+  "lab.what":`Le concept`,
+  "lab.use":`Utilité`,
+  "lab.stand":`Ce qui le distingue`,
+  "lab.where":`Domaines d'application`,
+  "cta.code":`Voir le code →`,
+  "p1.tag":`RAG · Recherche et récupération d'information`,
+  "p1.h":`Système intelligent de questions-réponses sur documents`,
+  "p1.what":`Un système d'IA qui répond à des questions sur un document en identifiant d'abord les passages pertinents, puis en rédigeant une réponse étayée ; il détermine lui-même s'il doit effectuer une recherche dans le document, sur le Web ou répondre directement.`,
+  "p1.use":`Permettre à un utilisateur de poser des questions en langage naturel sur un document volumineux (rapport, contrat ou manuel) et d'obtenir des réponses précises et sourcées, sans avoir à lire l'intégralité du document.`,
+  "p1.stand":`Je ne me suis pas contenté de le concevoir : j'en ai mesuré les performances. À l'aide d'un outil d'évaluation du secteur (RAGAS), les réponses ont obtenu un score de 97 % en termes de fidélité (respect de la source).`,
+  "p1.metric":`✓ Fidélité : 0,97 · Précision : 0,92`,
+  "p1.where":`<strong>Assurance et finance :</strong> libellés de polices, dossiers de sinistres, recueils de règles réglementaires. <strong>Secteur pharmaceutique et médical :</strong> protocoles d'essais, monographies de médicaments et directives cliniques (utilisé comme aide à la recherche, avec une validation humaine pour chaque réponse). <strong>Secteur public et défense :</strong> législation, documents d'appel d'offres, manuels techniques. <strong>Environnement :</strong> rapports scientifiques et études d'impact volumineux. La fidélité à la source étant évaluée, cet outil est adapté aux environnements réglementés où une réponse non étayée présente un risque réel.`,
+  "p2.tag":`Outils pour agents · Intégration`,
+  "p2.h":`Agent d'étude de marché`,
+  "p2.what":`Un assistant de recherche conversationnel qui interroge des outils en temps réel (recherche web, analyse de la concurrence, tarifs et actualités) via un serveur d'outils personnalisé que j'ai développé, puis intègre les résultats directement dans la conversation.`,
+  "p2.use":`Transforme une tâche de recherche manuelle fastidieuse en une opération accessible à un utilisateur non technique : il suffit de poser une question dans une fenêtre de discussion, et l'IA récupère et structure les informations.`,
+  "p2.stand":`Le serveur d'outils est encapsulé dans un conteneur Docker ; il s'exécute donc de manière identique sur n'importe quelle machine, franchissant ainsi l'étape vers une solution prête pour la production, au-delà de la simple démonstration.`,
+  "p2.metric":`✓ Conteneurisé et prêt à l'emploi`,
+  "p2.where":`<strong>Finance et assurance :</strong> veille concurrentielle, due diligence sur les fournisseurs et contreparties. <strong>Secteur pharmaceutique :</strong> suivi des pipelines de produits concurrents et des annonces réglementaires publiques. <strong>Secteur public et défense :</strong> collecte d'informations en sources ouvertes (OSINT). <strong>Environnement :</strong> suivi des données publiées sur les émissions, les incidents et les évolutions réglementaires. Toute équipe rémunérant actuellement du personnel pour parcourir le web et en synthétiser le contenu.`,
+  "p3.tag":`Multi-agents · Orchestration`,
+  "p3.h":`Système de stratégie de mise sur le marché`,
+  "p3.what":`Une équipe de quatre agents d'IA — planificateur, chercheur, analyste et stratège — travaillant en séquence pour élaborer une stratégie de mise sur le marché, selon deux méthodes distinctes permettant une comparaison directe des approches.`,
+  "p3.use":`Automatisation d'une tâche d'analyse commerciale nécessitant habituellement une équipe humaine, tout en garantissant la traçabilité de chaque affirmation jusqu'à sa source.`,
+  "p3.stand":`Chaque fait utilisé par les agents est associé à sa source et l'ensemble du processus fait l'objet d'une évaluation de la qualité ; le résultat est ainsi auditable et ne constitue pas une « boîte noire ».`,
+  "p3.where":`<strong>Secteur pharmaceutique :</strong> planification de l'entrée sur le marché pour un nouveau produit ou territoire. <strong>Finance et assurance :</strong> lancement de produits, tarification et analyse de la concurrence. <strong>Secteur public :</strong> évaluation d'options politiques, où chaque recommandation doit pouvoir être étayée par des preuves. <strong>Recherche :</strong> revues de preuves structurées où chaque affirmation est associée à sa source. L'essentiel réside dans la traçabilité : le système est conçu pour des contextes où il est nécessaire de justifier son raisonnement.`,
+  "p4.tag":`Multi-agents · Automatisation`,
+  "p4.h":`Équipe de tri des tickets d'assistance`,
+  "p4.what":`Un groupe d'agents d'IA qui discutent entre eux des tickets d'assistance entrants et décident, de concert, lesquels prioriser.`,
+  "p4.use":`Aider une équipe à gérer un afflux de demandes en confiant à l'IA le soin de les trier et de les classer au préalable, permettant ainsi aux collaborateurs de se concentrer sur l'essentiel.`,
+  "p4.stand":`Les agents se coordonnent entre eux (communication d'agent à agent), plutôt qu'une IA unique prenant toutes les décisions de manière isolée.`,
+  "p4.where":`<strong>Assurance :</strong> déclaration initiale de sinistre et tri des dossiers ; routage et classement des demandes d'indemnisation entrantes. <strong>Secteur médical :</strong> tri des demandes des patients et des requêtes administratives afin que le personnel clinique traite les cas urgents en priorité (classement uniquement, jamais de décision clinique). <strong>Secteur public :</strong> demandes de services aux citoyens. <strong>Défense et environnement :</strong> rapports d'incidents et de défaillances classés par gravité. Toute file d'attente à fort volume où le coût d'une urgence manquée est élevé.`,
+  "p5.tag":`Multi-agents · Mémoire`,
+  "p5.h":`Planificateur pour accélérateur de startups`,
+  "p5.what":`Un ensemble d'agents d'IA (recherche, financement, coach de présentation, critique) qui planifient les prochaines étapes d'une organisation, partagent une mémoire commune et améliorent leurs résultats grâce à un cycle d'examen et d'affinage.`,
+  "p5.use":`Élaboration d'une première ébauche de plan — étude de marché, options de financement et structure de présentation — qu'une personne affine ensuite, évitant ainsi de partir d'une page blanche.`,
+  "p5.stand":`Le système fonctionne par défaut sans service d'IA payant (mode hors ligne intégré), ce qui permet une démonstration gratuite, et un agent « critique » vérifie le travail avant sa finalisation.`,
+  "p5.where":`<strong>Secteur public et gouvernement :</strong> rédaction de demandes de subventions et de financements pour l'innovation. <strong>Environnement :</strong> planification et chiffrage d'initiatives de durabilité. <strong>Secteur pharmaceutique et médical :</strong> planification du transfert de technologies issues de la recherche amont et de la recherche translationnelle. <strong>Finance :</strong> présélection des investissements, où un agent critique soumet le dossier à des tests de résistance avant qu'une personne ne l'examine. Le mode hors ligne convient également aux organisations qui ne peuvent pas transmettre de données à un service d'IA externe.`,
+  "p6.tag":`Infrastructure d'agents · Conteneurisé`,
+  "p6.h":`Serveur d'outils d'intelligence économique`,
+  "p6.what":`Un serveur d'outils qui dote tout agent d'IA de capacités en temps réel — aperçu de l'entreprise, liste des concurrents, portefeuille de produits, aperçu des tarifs et actualités — grâce au protocole MCP (Model Context Protocol), le standard ouvert émergent pour connecter l'IA à des systèmes externes.`,
+  "p6.use":`Permettre à un assistant IA d'accéder à des informations réelles et actualisées provenant de sources externes, plutôt que de se limiter aux connaissances acquises lors de son entraînement.`,
+  "p6.stand":`Il est packagé avec Docker et prêt à l'emploi : le conteneur met les outils à disposition via le réseau, avec des identifiants injectés au moment de l'exécution plutôt qu'inscrits en dur dans le code.`,
+  "p6.metric":`✓ Docker · FastMCP · 5 outils en temps réel`,
+  "p6.where":`<strong>Finance et assurance :</strong> due diligence et veille concurrentielle. <strong>Secteur pharmaceutique :</strong> suivi du pipeline de développement et des questions réglementaires. <strong>Gouvernement et défense :</strong> collecte d'informations en sources ouvertes (OSINT). <strong>Environnement :</strong> surveillance des données publiées. C'est le modèle d'architecture qui importe plus que ces outils spécifiques : tout système interne peut être exposé à un agent d'IA de cette manière ; c'est ainsi que la plupart des organisations connecteront l'IA à leurs propres données.`,
+  "about.h":`À propos`,
+  "about.p1":`Je suis ingénieur en IA spécialisé dans les systèmes d'agents ; je conçois et évalue des agents basés sur des LLM, des pipelines RAG et des solutions d'automatisation en Python. Ce qui distingue mon travail, c'est mon parcours : j'ai passé quatre ans au sein d'une compagnie d'assurance réglementée (FCA), travaillant concrètement sur des données relatives aux sinistres et aux risques via SQL et Python. Je développe donc des solutions d'IA pour répondre à de véritables enjeux métier — coûts, précision et auditabilité — et pas seulement pour créer des démonstrations.`,
+  "about.p2":`L'efficacité réelle des solutions me tient à cœur. L'évaluation, la mesure et l'observabilité sont intégrées à tous mes projets, car obtenir une réponse et obtenir la « bonne » réponse sont deux choses bien distinctes. Je préfère détecter une défaillance lors de l'évaluation plutôt qu'en production.`,
+  "about.p3":`Je débuterai un master en intelligence artificielle à l'Université de Hull en 2026 et j'utilise quotidiennement des outils d'IA (Claude, Cursor, Copilot) dans mon travail. Citoyen britannique résidant au Royaume-Uni, je suis ouvert aux postes en télétravail ou hybrides et prêt à m'expatrier.`,
+  "sk.h1":`IA agentique et LLM`,
+  "sk.h2":`Données et recherche d'information (Retrieval)`,
+  "sk.h3":`Ingénierie`,
+  "contact.h":`Discutons-en`,
+  "contact.p":`Ouvert aux postes d'ingénieur IA, d'IA appliquée et d'IA agentique — en télétravail ou en mode hybride.`,
+  "contact.email":`M'envoyer un e-mail`,
+  "contact.gmail":`Ouvrir dans Gmail`,
+  "contact.copy":`Copier l'adresse`,
+  "contact.copied":`Copié ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · Conçu pour rendre le travail facile à comprendre : le code parle de lui-même.`
+},
+
+fil: {
+  "nav.projects":`Mga Proyekto`,
+  "nav.about":`Tungkol sa Akin`,
+  "nav.contact":`Makipag-ugnayan`,
+  "hero.eyebrow":`AI Engineer · Agentic Systems at RAG`,
+  "hero.h1":`Gumagawa ako ng <em>mga sistema ng AI</em> na gumagana nang totoo — at sinusukat ko kung talagang gumagana ang mga ito.`,
+  "hero.lede":`Agentic AI, retrieval-augmented generation (RAG), at LLM-powered automation, na binuo sa Python. Apat na taon ng karanasan sa data sa loob ng isang regulated insurer, na ngayon ay ginagamit sa pagbuo ng mga tool ng AI para sa mga totoong problema sa negosyo.`,
+  "hero.plain":`Sa madaling salita: Gumagawa ako ng software na gumagamit ng AI upang sagutin ang mga tanong, i-automate ang paulit-ulit na trabaho, at gumawa ng mga desisyon — ang uri ng mga tool na ginagamit ng isang negosyo upang makatipid ng oras at makatipid sa gastos. Ang bawat proyekto sa ibaba ay naka-link sa gumaganang code.`,
+  "hero.cta1":`Tingnan ang aking GitHub →`,
+  "hero.cta2":`Tingnan ang mga proyekto`,
+  "proj.head":`Mga piling proyekto`,
+  "proj.count":`6 na proyekto · lahat ay may gumaganang code`,
+  "proj.sub":`Ipinapaliwanag ng bawat card kung ano ang proyekto, para saan ito ginagamit, kung saan ito naaangkop sa industriya, at may link sa code. Hindi kailangan ng teknikal na background.`,
+  "lab.what":`Ano ito`,
+  "lab.use":`Para saan ito ginagamit`,
+  "lab.stand":`Bakit ito namumukod-tangi`,
+  "lab.where":`Saan ito naaangkop`,
+  "cta.code":`Tingnan ang code →`,
+  "cta.code2":`Tingnan ang tool server →`,
+  "p1.tag":`RAG · Pagkuha at Paghahanap`,
+  "p1.h":`Smart Document Q&A System`,
+  "p1.what":`Isang AI system na sumasagot sa mga tanong tungkol sa isang dokumento sa pamamagitan ng paghahanap muna ng mga tamang sipi, pagkatapos ay pagsulat ng isang sagot na nakaugat sa pinagmulan — at ito mismo ang magpapasya kung hahanapin ang dokumento, hahanapin ang web, o sasagot nang direkta.`,
+  "p1.use":`Pagpapahintulot sa isang tao na magtanong ng mga simpleng tanong tungkol sa isang malaking dokumento (isang ulat, kontrata, o manwal) at makakuha ng tumpak at may pinagmulang sagot sa halip na basahin ang buong dokumento.`,
+  "p1.stand":`Hindi ko lang ito ginawa — sinukat ko ito. Gamit ang isang tool sa pagsusuri ng industriya (RAGAS), ang mga sagot ay nakakuha ng 97% sa katapatan (pananatiling tapat sa pinagmulan).`,
+  "p1.metric":`✓ 0.97 katapatan · 0.92 katumpakan`,
+  "p1.where":`<strong>Seguro at pananalapi:</strong> mga salita sa patakaran, mga file ng paghahabol, mga aklat ng regulasyon. <strong>Parmasyutiko at medikal:</strong> mga protocol ng pagsubok, mga monograp ng gamot at mga klinikal na alituntunin, bilang isang pantulong sa pananaliksik na may kwalipikadong tao na sumusuri sa bawat sagot. <strong>Gobyerno at depensa:</strong> batas, mga papeles sa pagkuha, mga teknikal na manwal. <strong>Kapaligiran:</strong> mahahabang siyentipiko at ulat ng epekto. Dahil ang mga sagot ay binibigyan ng marka para sa katapatan sa pinagmulan, nababagay ito sa mga regulated na setting kung saan ang isang hindi sinusuportahang sagot ay may tunay na panganib.`,
+  "p2.tag":`Mga Tool ng Ahente · Pagsasama`,
+  "p2.h":`Ahente sa Pananaliksik sa Merkado`,
+  "p2.what":`Isang chat-based research assistant na tumatawag sa mga live na tool — paghahanap sa web, pagsusuri ng kakumpitensya, pagpepresyo at balita — sa pamamagitan ng isang custom na tool server na aking ginawa, pagkatapos ay ibinabalik ang mga resulta sa pag-uusap.`,
+  "p2.use":`Ginagawang isang bagay na magagawa ng isang hindi teknikal na tao ang isang mabagal na manu-manong gawain sa pananaliksik sa pamamagitan ng pagtatanong sa isang chat window, kasama ang AI na kumukuha at nag-iistruktura ng impormasyon.`,
+  "p2.stand":`Ang tool server ay naka-package sa Docker, kaya pareho itong tumatakbo sa anumang makina — isang hakbang patungo sa handa na para sa produksyon, hindi lamang isang demo.`,
+  "p2.metric":`✓ Naka-container at maaaring patakbuhin`,
+  "p2.where":`<strong>Pananalapi at seguro:</strong> pagsubaybay sa mga kakumpitensya, due diligence ng supplier at counterparty. <strong>Parmasyutiko:</strong> pagsubaybay sa mga pipeline ng karibal at mga pampublikong anunsyo ng regulasyon. <strong>Gobyerno at depensa:</strong> open-source na pangangalap ng impormasyon mula sa mga pampublikong mapagkukunan. <strong>Kapaligiran:</strong> pagsubaybay sa mga nailathalang datos tungkol sa mga emisyon, insidente at pagbabago ng patakaran. Anumang pangkat na kasalukuyang nagbabayad sa mga tao para basahin ang internet at ibuod ito.`,
+  "p3.tag":`Multi-Agent · Orchestration`,
+  "p3.h":`Go-to-Market Strategy System`,
+  "p3.what":`Isang pangkat ng apat na ahente ng AI — tagaplano, mananaliksik, analyst at strategist — na nagtatrabaho nang magkakasunod upang makagawa ng diskarte sa pagpasok sa merkado, at binuo sa dalawang magkaibang paraan upang direktang maihambing ang mga pamamaraan.`,
+  "p3.use":`Pag-automate ng isang bahagi ng pagsusuri sa negosyo na karaniwang nangangailangan ng isang pangkat ng mga tao, habang pinapanatili ang bawat pahayag na masusubaybayan hanggang sa pinagmulan nito.`,
+  "p3.stand":`Bawat katotohanang ginagamit ng mga ahente ay may tag kung saan ito nagmula, at ang buong proseso ay binibigyan ng marka batay sa kalidad — kaya ang output ay maaaring ma-audit, hindi isang black box.`,
+  "p3.where":`<strong>Parmasyutiko:</strong> pagpaplano ng pagpasok sa merkado para sa isang bagong produkto o teritoryo. <strong>Pananalapi at seguro:</strong> paglulunsad ng produkto, pagpepresyo at pananaliksik sa mga kakumpitensya. <strong>Gobyerno:</strong> pagtatasa ng opsyon sa patakaran, kung saan ang bawat rekomendasyon ay dapat na masusubaybayan sa ebidensya. <strong>Pananaliksik:</strong> mga nakabalangkas na pagsusuri ng ebidensya kung saan ang bawat pahayag ay may pinagmulan. Ang audit trail ang punto — ito ay binuo para sa mga setting kung saan dapat mong ipakita ang iyong pinagbatayan.`,
+  "p4.tag":`Multi-Agent · Automation`,
+  "p4.h":`Support Ticket Triage Team`,
+  "p4.what":`Isang grupo ng mga ahente ng AI na tinatalakay sa kanilang sarili ang mga papasok na tiket ng suporta at nagpapasya, nang sama-sama, kung alin ang uunahin.`,
+  "p4.use":`Tinutulungan ang isang koponan na hawakan ang napakaraming kahilingan sa pamamagitan ng pag-uuri at pagraranggo ng AI sa mga ito, upang ang mga tao ay tumuon sa kung ano ang pinakamahalaga.`,
+  "p4.stand":`Ang mga ahente ay nagtutulungan (agent-to-agent), sa halip na isang AI lamang ang gumagawa ng bawat desisyon.`,
+  "p4.where":`<strong>Seguro:</strong> unang-abiso-sa-pagkawala at pag-triage ng mga claim, pagruruta at pagraranggo ng mga papasok na claim. <strong>Medikal:</strong> pag-uuri ng mga katanungan ng pasyente at mga kahilingang administratibo upang makita muna ng mga kawani ng klinika ang mga agarang bagay — pagraranggo lamang, hindi kailanman isang klinikal na desisyon. <strong>Gobyerno:</strong> mga kahilingan sa serbisyo ng mamamayan. <strong>Depensa at kapaligiran:</strong> mga ulat ng insidente at pagkakamali na niraranggo ayon sa kalubhaan. Anumang mataas na dami ng pila kung saan mataas ang gastos ng hindi pagtukoy sa agarang bagay.`,
+  "p5.tag":`Multi-Agent · Memorya`,
+  "p5.h":`Startup Accelerator Planner`,
+  "p5.what":`Isang hanay ng mga ahente ng AI (pananaliksik, pagpopondo, pitch coach, kritiko) na nagpaplano ng mga susunod na hakbang ng isang organisasyon, nagbabahagi ng isang karaniwang memorya, at nagpapabuti ng kanilang sariling output sa pamamagitan ng isang loop ng pagsusuri at pagpino.`,
+  "p5.use":`Paggawa ng isang unang-draft na plano — pananaliksik sa merkado, mga opsyon sa pagpopondo at isang balangkas ng pitch — na pagkatapos ay pinipino ng isang tao sa halip na magsimula sa isang blangkong pahina.`,
+  "p5.stand":`Tumatakbo ito nang walang bayad na serbisyo ng AI bilang default (built-in na offline mode), kaya maaari itong ipakita nang libre, at sinusuri ng isang kritikong ahente ang gawain bago ito tapusin.`,
+  "p5.where":`<strong>Gobyerno at pampublikong sektor:</strong> pagbalangkas ng mga aplikasyon para sa grant at pagpopondo ng inobasyon. <strong>Kapaligiran:</strong> pagpaplano at pagtataya ng gastos ng mga inisyatibo sa pagpapanatili. <strong>Parmasyutiko at medikal:</strong> pagpaplano ng maagang yugto ng pananaliksik at pagsasalin nito sa aplikasyon. <strong>Pananalapi:</strong> screening ng pamumuhunan, kung saan sinusuri ng kritikong ahente ang kaso bago ito basahin ng isang tao. Ang offline mode ay angkop din sa mga organisasyong hindi maaaring magpadala ng data sa isang panlabas na serbisyo ng AI.`,
+  "p6.tag":`Imprastraktura ng Ahente · Naka-container`,
+  "p6.h":`Market Intelligence Tool Server`,
+  "p6.what":`Isang tool server na nagbibigay ng mga live na kakayahan sa anumang ahente ng AI — pangkalahatang-ideya ng kumpanya, listahan ng mga kakumpitensya, portfolio ng produkto, snapshot ng presyo at news pulse — gamit ang MCP, ang umuusbong na open standard para sa pagkonekta ng AI sa mga panlabas na sistema.`,
+  "p6.use":`Pagpapahintulot sa isang AI assistant na maabot ang tunay at napapanahong impormasyon mula sa labas nito, sa halip na umasa lamang sa natutunan nito habang nagsasanay.`,
+  "p6.stand":`Ito ay naka-package kasama ng Docker at tunay na tumatakbo: ang container ay naghahain ng mga tool sa pamamagitan ng network, na may mga kredensyal na inilalagay sa runtime sa halip na nakasulat sa code.`,
+  "p6.metric":`✓ Docker · FastMCP · 5 live na tool`,
+  "p6.where":`<strong>Pananalapi at seguro:</strong> due diligence at pagsubaybay sa kakumpitensya. <strong>Parmasyutiko:</strong> pipeline at pagsubaybay sa regulasyon. <strong>Gobyerno at depensa:</strong> open-source na pangangalap ng impormasyon. <strong>Kapaligiran:</strong> pagsubaybay sa nailathalang data. Mas mahalaga ang pattern kaysa sa mga partikular na tool na ito — anumang panloob na sistema ay maaaring ibukas sa isang AI agent sa ganitong paraan, na siyang paraan kung paano ikokonekta ng karamihan sa mga organisasyon ang AI sa kanilang sariling data.`,
+  "about.h":`Tungkol sa Akin`,
+  "about.p1":`Ako ay isang AI engineer na dalubhasa sa mga agentic system — bumubuo at sinusuri ko ang mga LLM-powered agent, RAG pipeline at automation sa Python. Ang nagpapaiba sa aking trabaho ay ang aking pinanggalingan: apat na taon sa loob ng isang regulated (FCA) insurer, at direktang nagtatrabaho gamit ang mga claim at risk data gamit ang SQL at Python. Ibig sabihin, gumagawa ako ng AI para sa mga totoong problema sa negosyo — gastos, katumpakan, at kakayahang ma-audit — hindi lang para sa mga demo.`,
+  "about.p2":`Mahalaga sa akin kung talagang gumagana ang mga bagay-bagay. Sa lahat ng aking mga proyekto, makikita mo ang ebalwasyon, pagsukat, at kakayahang maobserbahan, dahil ang nagbunga ito ng sagot at ang nagbunga ito ng tamang sagot ay magkaibang bagay. Mas gugustuhin kong makahanap ng pagkabigo sa ebalwasyon kaysa sa produksyon.`,
+  "about.p3":`Nagsisimula ako ng isang MSc sa Artificial Intelligence sa University of Hull sa 2026, at gumagamit ako ng mga AI tool (Claude, Cursor, Copilot) araw-araw sa aking sariling trabaho. Ako ay mamamayang British na nakabase sa UK, bukas sa mga remote at hybrid na tungkulin, at handang lumipat sa ibang bansa.`,
+  "sk.h1":`Agentic AI at LLMs`,
+  "sk.h2":`Data & Retrieval`,
+  "sk.h3":`Engineering`,
+  "contact.h":`Pag-usapan natin`,
+  "contact.p":`Bukas sa mga tungkulin ng AI Engineer, Applied AI at Agentic AI — remote o hybrid.`,
+  "contact.email":`I-email ako`,
+  "contact.gmail":`Buksan sa Gmail`,
+  "contact.copy":`Kopyahin ang address`,
+  "contact.copied":`Nakopya na ✓`,
+  "footer.txt":`© 2026 Chay Chauhan · Ginawa upang gawing madaling maunawaan ang gawain — ang code ang nagsasalita para sa sarili nito.`
+}
+
+};
+
+/* ---- capture the English text that already lives in the HTML ---- */
+document.querySelectorAll('[data-i18n]').forEach(el=>{
+  I18N.en[el.dataset.i18n] = el.innerHTML;
+});
+
+const HTML_LANG = {en:'en', zhs:'zh-Hans', zht:'zh-Hant', ja:'ja', th:'th', vi:'vi', fil:'fil', de:'de', fr:'fr'};
+
+function setLang(code){
+  const dict = I18N[code] || I18N.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    el.innerHTML = (dict[key] !== undefined) ? dict[key] : I18N.en[key];
+  });
+  document.documentElement.lang = HTML_LANG[code] || 'en';
+  const btn = document.getElementById('copybtn');
+  if(btn) btn.classList.remove('done');
+}
+
+document.querySelectorAll('.lang button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.lang button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    setLang(b.dataset.set);
+  });
+});
+
+/* ---- copy email address ---- */
+const EMAIL = 'chait6982@gmail.com';
+const copybtn = document.getElementById('copybtn');
+copybtn.addEventListener('click', async ()=>{
+  const activeLang = document.querySelector('.lang button.active').dataset.set;
+  const dict = I18N[activeLang] || I18N.en;
+  try{
+    await navigator.clipboard.writeText(EMAIL);
+  }catch(e){
+    const t = document.createElement('textarea');
+    t.value = EMAIL; document.body.appendChild(t); t.select();
+    document.execCommand('copy'); document.body.removeChild(t);
+  }
+  copybtn.innerHTML = dict['contact.copied'] || I18N.en['contact.copied'];
+  copybtn.classList.add('done');
+  setTimeout(()=>{
+    copybtn.innerHTML = dict['contact.copy'] || I18N.en['contact.copy'];
+    copybtn.classList.remove('done');
+  }, 2200);
+});
+</script>
+</body>
+</html>
